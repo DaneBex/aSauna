@@ -1,0 +1,244 @@
+.new-project-header {
+    position: fixed;
+    top: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.x-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.new-project-details {
+    width: 40%;
+    margin: 0 20px;
+    height: 40px;
+}
+
+.project-details-h2 {
+    font-size: 32px;
+}
+
+.new-project-label {
+    height: 18px;
+    font-size: 12px;
+    margin: 0 0 8px;
+    font-weight: 900;
+}
+
+.new-project-input-label {
+    display: flex;
+    flex-direction: column;
+    margin: 24px 0;
+}
+
+.new-project-input {
+    height: 36px;
+    padding: 6px 0 6px 4px;
+    border: none;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #f99fa4;;
+}
+
+.new-project-example {
+    width: 50%;
+    border: 1px solid #f3f3f3;
+    border-radius: 8px;;
+}
+
+.new-project-example-top {
+    display: flex;
+    gap: 20px;
+    padding: 20px 20px;
+    position: relative;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.new-project-page {
+    margin-top: 70px;
+    display: flex;
+    gap: 70px;
+}
+
+.grey-square {
+    width: 40px;
+    height: 40px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+.new-project-example-name {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.new-project-example-options {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.new-project-example-option-blue {
+    color: #4573d2;
+}
+
+.example-task-asignee-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.example-task {
+    display: flex;
+    border: 1px solid #f3f3f3;
+    align-items: center;
+    gap: 20px;
+}
+
+.task-example-grey-line {
+    width: 70%;
+    height: 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+.task-example-grey-line-two {
+    width: 90%;
+    height: 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+.example-task-name {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 40%;
+    height: 100%;
+    padding-left: 15px;
+}
+
+.example-task-asignee {
+    border-left: 1px solid #f3f3f3;
+    border-right: 1px solid #f3f3f3;
+    padding: 5px 20px;
+}
+
+.to-do {
+    padding: 20px 10px;
+}
+
+.to-do-title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.example-task-calendar {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.task-example-grey-line-calendar {
+    width: 70%;
+    height: 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+}
+
+.task-example-green-line {
+    width: 25%;
+    padding: 0 5px;
+    height: 10px;
+    background-color: #45b959;
+    border-radius: 8px;
+}
+
+.task-example-purple-line {
+    width: 25%;
+    padding: 0 5px;
+    height: 10px;
+    background-color: #ca5cd8;
+    border-radius: 8px;
+}
+
+.task-example-pink-line {
+    width: 25%;
+    padding: 0 5px;
+    height: 10px;
+    background-color: #e68df1;
+    border-radius: 8px;
+}
+
+.task-example-blue-line {
+    width: 25%;
+    padding: 0 5px;
+    height: 10px;
+    background-color: #3d9ddd;
+    border-radius: 8px;
+}
+
+.task-example-cyan-line {
+    width: 25%;
+    padding: 0 5px;
+    height: 10px;
+    background-color: #0e3c5a;
+    border-radius: 8px;
+}
+
+.task-check-icon-green {
+    color: green
+}
+
+.task-example-orange-line {
+    width: 25%;
+    padding: 0 5px;
+    height: 10px;
+    background-color: #dd9d3d;
+    border-radius: 8px;
+}
+
+.new-project-textarea {
+    resize: none;
+    height: 100px;
+}
+
+.new-project-submit {
+    width: 100%;
+    margin: 48px 0 8px;
+    height: 36px;
+    border-radius: 6px;
+    border: none;
+    background-color: #4573d2;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.x-icon {
+    cursor: pointer;
+}
+
+.new-project-submit-nothing {
+    width: 100%;
+    margin: 48px 0 8px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid #a8a7a7;
+    background-color: white;
+    color: #a8a7a7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.new-project-submit:hover {
+    background-color: #426dc6;
+}

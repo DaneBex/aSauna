@@ -1,0 +1,100 @@
+
+#signup-page {
+    position: relative;
+    display: flex;
+    height: 100vh;
+}
+
+.logo-top-left {
+    position: absolute;
+    width: 100%;
+    height: 54px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 5px 20px 0 rgba(109, 110, 111, 0.08);
+    background-color: white;
+    padding-left: 50px;
+}
+
+.signup-logo-text {
+        font-size: 20px;
+    font-weight: 900;
+}
+
+#signup-logo-size {
+    width: 30px;
+    height: 30px;
+}
+
+#signup-form {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#signup-form-image {
+    width: 112px;
+    height: 112px;
+    margin-bottom: 50px;
+}
+
+#signup-form-title {
+    font-size: 42px;
+}
+
+#signup-terms {
+    font-size: 12px;
+}
+
+.signup-input-input {
+    width: 575px;
+    height: 50px;
+    border: 2px solid #e0e6e8;
+    border-radius: 3px;;
+}
+
+.signup-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-submit-button {
+    margin-top: 10px;
+    height: 50px;
+    width: 575px;
+    background-color: #726ab9;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 15px;
+    transition-duration: .25s;
+}
+
+.signup-submit-button:hover {
+    background-color: #575089;
+}
+
+#signup-right-side {
+    background-color: #e2fffa;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.signup-included {
+    display: flex;
+    gap: 5px;
+}
+
+.checkmark-icon {
+    color: green;
+}

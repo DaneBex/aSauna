@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -9,14 +10,24 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const [passwordError, setPasswordError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+
+    if (!email) setEmailError(true)
+    if (!password) setPasswordError(true)
+
+    if (email && password) {
+      const data = dispatch(login(email, password));
+
+      if (data) {
+        setEmailError(true)
+        setPasswordError(true)
+      }
   };
+}
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -30,35 +41,66 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
+  const demoLogin = () => {
+    return dispatch(login('demo@aa.io', 'password'))
+  }
+
   return (
-    <form onSubmit={onLogin}>
+    <div className='background-login-form'>
+
+    <form className='login-form' onSubmit={onLogin}>
+ <div id='login-logo-div'>
+        <img id='login-logo-size' src='https://images.squarespace-cdn.com/content/v1/59ea7374f43b55a33fa5ef2d/1512168335216-W3W86GLO35W9UW05DP93/Asana+Logo.png?format=1000w' />
+        <h1>aSauna</h1>
+      </div>
+      <div id='login-demo-user'>
+        <button onClick={demoLogin} className='login-demo-user-button'>Log in with Demo User</button>
+      </div>
+      <div className='line-or-line'>
+        <span className='line-middle'></span>
+        <span className='or-lines'>or</span>
+        <span className='line-middle'></span>
+      </div>
+      <div className='form-fields'>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
+      <div className='login-input'>
+        <label className='login-input-label' htmlFor='email'>Email address</label>
+        <input className='login-input-field'
           name='email'
           type='text'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
         />
+        {emailError &&
+        <p className='error-login'>Incorrect email</p>
+        }
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
+      <div className='login-input'>
+        <label className='login-input-label' htmlFor='password'>Password</label>
+        <input className='login-input-field'
           name='password'
           type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        {passwordError &&
+        <p className='error-login'>Incorrect password</p>
+        }
+      </div>
+        <button className='login-login-button' type='submit'>Login</button>
+      </div>
+      <div id='login-signup-link'>
+        <p>Don't have an account?</p>
+        <NavLink id='navlink-signup' to={'/sign-up'}>Sign up</NavLink>
       </div>
     </form>
+    </div>
   );
 };
 

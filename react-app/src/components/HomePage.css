@@ -1,0 +1,184 @@
+.homepage-entire-page {
+    display: flex;
+    overflow: hidden;
+}
+
+.top-of-home {
+    height: 72px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    justify-content: space-between;
+}
+
+.user-prof-box {
+    position: relative;
+}
+
+.user-prof-pic {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.home-h1 {
+    font-size: 20px;
+}
+
+.homepage-content {
+    height: auto;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-homepage {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.homepage-date {
+    height: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.homepage-goodmorning {
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-options {
+    width: 240px;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    border: 1px solid #cfcbcb
+}
+
+.profile-option {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-bottom: 1px solid #cfcbcb;
+    cursor: pointer;
+    height: 36px;
+    padding: 0 12px 0 36px;
+}
+
+.profile-option:hover {
+    background-color: #e6e3e3;
+}
+
+.homepage-project-box {
+    height: 398px;
+    width: 40%;
+    border: 1px solid #e6e3e3;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.homepage-project-box-top {
+    height: 52px;
+    padding: 24px 24px 0;
+    margin-bottom: 20px;
+}
+
+.homepage-project-box-header {
+    font-size: 20px;
+}
+
+.project-list {
+    display: flex;
+    margin: 0 24px;
+    font-weight: 900;
+    padding: 5px 5px;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.project-list:hover {
+    background-color: #e6e3e3;
+}
+
+.project-list-icon-plus {
+    width: 47px;
+    height: 47px;
+    color: grey;
+}
+
+.project-list-name {
+    font-size: 14px;
+}
+
+.rectangle-list-icon-blue {
+    height: 47px;
+    width: 47px;
+    color: aqua;
+}
+
+.rectangle-list-icon-pink {
+    height: 47px;
+    width: 47px;
+    color: rgb(235, 107, 224);
+}
+
+.rectangle-list-icon-green {
+    height: 47px;
+    width: 47px;
+    color: rgb(0, 255, 136);
+}
+
+.rectangle-list-icon-orange {
+    height: 47px;
+    width: 47px;
+    color: rgb(255, 181, 44);
+}
+
+.rectangle-list-icon-red {
+    height: 47px;
+    width: 47px;
+    color: rgb(255, 30, 0);
+}
+
+.rectangle-list-icon-purple {
+    height: 47px;
+    width: 47px;
+    color: rgb(174, 0, 255);
+}
+
+.rectangle-list-icon-cyan {
+    height: 47px;
+    width: 47px;
+    color: rgb(34, 74, 161);
+}
+
+.rectangle-list-icon-black {
+    height: 47px;
+    width: 47px;
+    color: rgb(0, 0, 0);
+}
+
+.rectangle-list-icon-white {
+    height: 47px;
+    width: 47px;
+    color: rgb(136, 61, 102);
+}
+
+.rectangle-list-icon-yellow {
+    height: 47px;
+    width: 47px;
+    color: rgb(243, 255, 73);
+}

@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+html {
+    height: 100vh;
+}
+
+.login-form {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 5px 20px 0 rgba(109, 110, 111, 0.08);
+    align-items: center;
+    flex-direction: column;
+    width: 450px;
+}
+#login-logo-size {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+}
+
+#login-demo-user {
+    position: absolute;
+    top: 150px;
+
+}
+
+.login-demo-user-button {
+    border: 1px solid #cfcbcb;
+    background-color: white;
+    border-radius: 8px;
+    width: 376px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: .25s;
+    cursor: pointer;
+}
+
+.login-demo-user-button:hover {
+    background-color: #cfcbcb;
+}
+
+#login-signup-link {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    bottom: 80px;
+    font-size: 14px;
+}
+
+#navlink-signup {
+    text-decoration: none;
+}
+
+.error-login {
+    color: red;
+}
+
+.line-middle {
+    margin: 8px 0 0;
+    padding: 8px 0 0;
+    border-top: 1px solid #cfcbcb;
+    width: 172.5;
+    height: 9px;
+}
+
+.form-fields {
+    margin-top: 70px;
+    width: 376px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-input-label {
+    font-size: 12px;
+}
+
+.login-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.login-input-field {
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid #cfcbcb
+}
+
+.or-lines {
+    color: #cfcbcb
+}
+
+#login-logo-div {
+    position: absolute;
+    top: 50px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.background-login-form {
+    background-color: #f9f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.login-login-button {
+    margin-top: 10px;
+    height: 36px;
+    background-color: #726ab9;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    transition-duration: .25s;
+}
+
+.login-login-button:hover {
+    background-color: #575089;
+}

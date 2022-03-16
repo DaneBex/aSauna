@@ -1,0 +1,125 @@
+.black-navbar {
+    position: fixed;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1f21;
+    color: white;
+    height: 100vh;
+}
+
+.black-nav-top {
+    display: flex;
+    justify-content: center;
+    height: 11%;
+}
+
+.navbar-link {
+    display: flex;
+    gap: 5px;
+    padding: 0 24px;
+    height: 15%;
+    align-items: center;
+}
+
+.navbar-link-home {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-asauna-logo {
+    display: flex;
+    align-items: center;
+}
+
+.black-nav-links {
+    height: 33%;
+}
+
+.navbar-project-list {
+    height: 44%;
+    border-top: 1px solid #cfcbcb;
+    padding: 8px 0 16px;
+    border-bottom: 1px solid #cfcbcb;
+}
+
+.navbar-project-header {
+    padding: 0 24px;
+    margin-bottom: 20px;
+}
+
+.project-list-icon-blue {
+    padding: 0 24px;
+    height: 28px;
+    color: aqua;
+}
+
+.project-list-icon-pink {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(235, 107, 224);
+}
+
+.project-list-icon-green {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(0, 255, 136);
+}
+
+.project-list-icon-orange {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(255, 181, 44);
+}
+
+.project-list-icon-red {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(255, 30, 0);
+}
+
+.project-list-icon-purple {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(174, 0, 255);
+}
+
+.project-list-icon-cyan {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(34, 74, 161);
+}
+
+.project-list-icon-black {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(60, 209, 202);
+}
+
+.project-list-icon-white {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(255, 255, 255);
+}
+
+.project-list-icon-yellow {
+    padding: 0 24px;
+    height: 28px;
+    color: rgb(243, 255, 73);
+    list-style: circle;
+}
+
+.project-list-icon-yellow::marker {
+    color: rgb(243, 255, 73);
+    height: 20px;
+    width: 20px;
+
+}
+
+.navbar-project-list {
+    text-decoration: none;
+}
+
+.project-list-icon-wh::marker {
+    color: rgb(255, 255, 255);
+}

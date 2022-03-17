@@ -6,11 +6,12 @@ import {
     faCalendar
 } from "@fortawesome/free-regular-svg-icons";
 import './NewProject.css'
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { createProject, populateProjectsByUser } from "../store/project";
 import { useDispatch, useSelector } from "react-redux";
 
 const NewProject = () => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
 
@@ -45,8 +46,9 @@ const NewProject = () => {
             details: projectDetails
         }))
 
+        console.log(newPJ)
         if (newPJ) {
-            <Redirect to={`/my_projects/${newPJ.id}`} />
+            history.push(`/my_projects/${newPJ.id}`)
         } else console.log('not working')
 
     }

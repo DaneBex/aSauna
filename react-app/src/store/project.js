@@ -1,7 +1,9 @@
 
 
 const ADD_PROJECT = "project/ADD_PROJECT"
-const LOAD_PROJECT_BY_USER = "projects/LOAD_PROJECT"
+const LOAD_PROJECT_BY_USER = "project/LOAD_PROJECT"
+const DELETE_PROJECT = "project/DELETE_PROJECT"
+const UPDATE_PROJECT = "project/UPDATE_PROJECT"
 
 
 
@@ -15,6 +17,19 @@ const load_project = (projects) => ({
     projects
 })
 
+const remove_project = (deletedProject) => ({
+    type: DELETE_PROJECT,
+    deletedProject
+})
+
+const changeProject = (project) => {
+    console.log(project)
+    return {
+    type: UPDATE_PROJECT,
+    project
+    }
+}
+
 export const createProject = (project) => async (dispatch) => {
     console.log('hit')
     const response = await fetch('/api/projects/', {
@@ -27,16 +42,42 @@ export const createProject = (project) => async (dispatch) => {
     if (response.ok) {
         const project = await response.json();
         dispatch(add_project(project))
+        return project
     }
 }
 
 export const populateProjectsByUser = (userId) => async (dispatch) => {
-    
+
     const response = await fetch(`/api/projects/${userId}`)
 
     if (response.ok) {
         const projects = await response.json()
         dispatch(load_project(projects))
+    }
+}
+
+export const deleteProject = (id) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${id}`, {
+        method: 'DELETE',
+    })
+
+    if (response.ok) {
+        const deletedProject = await response.json();
+        dispatch(remove_project(deletedProject))
+    }
+}
+
+export const updateProject = (id, formInfo) => async (dispatch) => {
+    const response = await fetch(`/api/projects/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formInfo)
+    })
+
+    if (response.ok) {
+        const updatedProject = await response.json();
+        console.log(updatedProject)
+        dispatch(add_project(updatedProject))
     }
 }
 
@@ -52,6 +93,17 @@ const projectReducer = (state = {}, action) => {
             return newState;
         }
         case ADD_PROJECT: {
+            // return { [action.project.id]: action.project, ...state }
+            newState = { ...state }
+            newState[action.project.id] = action.project
+            return newState;
+        }
+        case DELETE_PROJECT: {
+            newState = { ...state };
+            delete newState[action.deletedProject.id];
+            return newState
+        }
+        case UPDATE_PROJECT: {
             return { [action.project.id]: action.project, ...state }
         }
         default:

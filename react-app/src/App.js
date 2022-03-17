@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import HomePage from './components/HomePage';
 import NewProject from './components/NewProject';
 import ProjectPage from './components/ProjectPage';
+import ProfileOptionModal from './components/ProfileOptionModal';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,7 +30,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />

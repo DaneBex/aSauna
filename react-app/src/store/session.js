@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPDATE_USER = 'session/UPDATE_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +10,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+const changeUser = (user) => ({
+  type: UPDATE_USER,
+  payload: user
 })
 
 const initialState = { user: null };
@@ -24,7 +30,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +46,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -69,6 +75,20 @@ export const logout = () => async (dispatch) => {
   }
 };
 
+export const updateUser = (id, formInfo) => async (dispatch) => {
+  console.log('yes')
+  const response = await fetch(`/api/auth/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formInfo)
+  })
+
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(changeUser(data))
+  }
+}
+
 
 export const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
@@ -82,7 +102,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -103,6 +123,8 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case UPDATE_USER:
+      return { user: action.payload }
     default:
       return state;
   }

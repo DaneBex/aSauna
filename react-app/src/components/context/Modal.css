@@ -25,8 +25,18 @@
 
   #modal-content-one {
     position: absolute;
-    background-color:white;
-    height: 300px;
-    width: 300px;
-    border: 1px solid red;
+    background-color: white;
+    height: 400px;
+    width: 600px;
+    border-radius: 8px;
+    border-bottom: 1px solid #e6e3e3;
+  }
+
+  #modal-content-two {
+    position: absolute;
+    background-color: white;
+    height: 400px;
+    width: 600px;
+    border-radius: 8px;
+    border-bottom: 1px solid #e6e3e3;
   }

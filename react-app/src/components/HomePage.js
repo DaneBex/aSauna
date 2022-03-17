@@ -18,6 +18,8 @@ const HomePage = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
 
+    console.log(user)
+
 
     useEffect(() => {
         dispatch(populateProjectsByUser(user.id))
@@ -26,7 +28,6 @@ const HomePage = () => {
     const projectsObj = useSelector(state => state.project)
     const projects = Object.values(projectsObj)
 
-    console.log(projects)
 
     const [profOpen, setProfOpen] = useState(false)
     const [profSetting, setProfSetting] = useState(false)
@@ -44,6 +45,8 @@ const HomePage = () => {
     const logoutHandler = () => {
         dispatch(logout())
     }
+
+    console.log(profSetting)
 
     const d = new Date
     const date = d.toString()
@@ -67,14 +70,13 @@ const HomePage = () => {
                         }
                         {profOpen &&
                             <div className="profile-options">
-                                <p onClick={closeSetting} className="profile-option">Edit Profile</p>
+                                <ProfileOptionModal user={user} />
                                 <p onClick={logoutHandler} className="profile-option">Log Out</p>
 
                             </div>
                         }
 
                     </div>
-                    {profSetting && viewProfSetting}
                 </div>
                 <div className="homepage-content">
                     <h5 className="homepage-date">

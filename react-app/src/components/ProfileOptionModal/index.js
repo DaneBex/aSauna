@@ -17,7 +17,7 @@ function ProfileOptionModal({user}) {
         onClick={() => setShowModal(true)}>Edit Profile</button>
       {showModal && (
         <Modal id={'modal-content-one'} onClose={() => setShowModal(false)}>
-          <ProfileOption user={user} />
+          <ProfileOption setShowModal={setShowModal} user={user} />
         </Modal>
       )}
     </>

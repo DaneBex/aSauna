@@ -4,7 +4,7 @@ import { updateProject } from "../../store/project";
 import './EditProject.css'
 
 
-const EditProject = ({ project }) => {
+const EditProject = ({ project, setShowModal }) => {
     const dispatch = useDispatch()
     let submitButton;
 
@@ -26,6 +26,7 @@ const EditProject = ({ project }) => {
         if (details) vals["details"] = details
 
         dispatch(updateProject(project.id, vals))
+        setShowModal(false)
     }
 
     return (

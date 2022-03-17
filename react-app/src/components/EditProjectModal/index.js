@@ -14,7 +14,7 @@ function EditProjectModal({project}) {
     <FontAwesomeIcon onClick={() => setShowModal(true)} className="pj-info-icon" icon={faCircleQuestion} />
       {showModal && (
         <Modal id={'modal-content-one'} onClose={() => setShowModal(false)}>
-          <EditProject project={project} />
+          <EditProject project={project} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>

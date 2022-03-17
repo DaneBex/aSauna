@@ -31,7 +31,7 @@ const changeProject = (project) => {
 }
 
 export const createProject = (project) => async (dispatch) => {
-    console.log('hit')
+    
     const response = await fetch('/api/projects/', {
         method: "POST",
         headers: {
@@ -68,6 +68,7 @@ export const deleteProject = (id) => async (dispatch) => {
 }
 
 export const updateProject = (id, formInfo) => async (dispatch) => {
+    console.log(JSON.stringify(formInfo))
     const response = await fetch(`/api/projects/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -80,6 +81,8 @@ export const updateProject = (id, formInfo) => async (dispatch) => {
         dispatch(add_project(updatedProject))
     }
 }
+
+
 
 
 const projectReducer = (state = {}, action) => {

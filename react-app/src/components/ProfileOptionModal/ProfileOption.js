@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../store/session";
 
 
-const ProfileOption = ({ user }) => {
+const ProfileOption = ({ user, setShowModal }) => {
     const dispatch = useDispatch()
     let submitButton;
 
@@ -27,6 +27,7 @@ const ProfileOption = ({ user }) => {
         if (aboutme) vals["about_me"] = aboutme
 
         dispatch(updateUser(user.id, vals))
+        setShowModal(false)
     }
 
     return (

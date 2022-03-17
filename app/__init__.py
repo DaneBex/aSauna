@@ -1,4 +1,6 @@
 import os
+from tracemalloc import take_snapshot
+from app.models import task
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -9,6 +11,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.project_routes import projects_routes
+from .api.task_routes import tasks_routes
 
 from .seeds import seed_commands
 
@@ -33,6 +36,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(projects_routes, url_prefix='/api/projects')
+app.register_blueprint(tasks_routes, url_prefix='/api/tasks')
 db.init_app(app)
 Migrate(app, db)
 

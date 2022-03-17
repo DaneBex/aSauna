@@ -101,6 +101,18 @@ def update_project(id):
     if 'details' in request.json:
         project.details = request.json["details"]
 
+    if request.json == 'green':
+        project.status = 1
+    if request.json == 'yellow':
+        project.status = 2
+    if request.json == 'red':
+        project.status = 3
+    if request.json == 'blue':
+        project.status = 4
+    if request.json == 'complete':
+        project.status = 5
+
+
 
 
 

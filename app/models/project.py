@@ -28,5 +28,6 @@ class Project(db.Model):
             "status": self.status,
             "color": self.color,
             "user_username": self.user.username,
-            "user_prof_pic": self.user.profile_pic
+            "user_prof_pic": self.user.profile_pic,
+            "tasks": [task.to_dict() for task in self.tasks],
         }

@@ -1,5 +1,53 @@
-#modal-content-one {
-    height: 300px;
-    width: 300px;
-    border: 1px solid red;
+.top-prof-setting {
+    height: 40px;
+    padding: 8px 32px 0;
+    font-size: 12px;
+    border-bottom: 1px solid #e6e3e3;
+}
+
+.your-photo-edit {
+    margin: 0 0 8px;
+    font-size: 12px;
+}
+
+.prof-setting-prof-url {
+    resize: none;
+}
+
+.prof-setting-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 24px;
+}
+
+.prof-setting-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.prof-setting-submit {
+    margin-left: 75%;
+    width: 20%;
+    height: 36px;
+    cursor: pointer;
+    border: none;
+    background-color: #4573d2;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.prof-setting-submit-nothing {
+    margin-left: 75%;
+    width: 20%;
+    height: 36px;
+    border: 1px solid #e6e3e3;
+    color: #d1d0d0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
 }

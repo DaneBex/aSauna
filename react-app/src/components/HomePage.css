@@ -20,6 +20,7 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .home-h1 {
@@ -68,10 +69,14 @@
     display: flex;
     align-items: center;
     background-color: white;
+    border: none;
     border-bottom: 1px solid #cfcbcb;
     cursor: pointer;
+    font-weight: 900;
     height: 36px;
     padding: 0 12px 0 36px;
+    width: 100%;
+    font-size: 16px;
 }
 
 .profile-option:hover {
@@ -127,58 +132,68 @@
     height: 47px;
     width: 47px;
     color: aqua;
+    cursor: pointer;
 }
 
 .rectangle-list-icon-pink {
     height: 47px;
     width: 47px;
     color: rgb(235, 107, 224);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-green {
     height: 47px;
     width: 47px;
     color: rgb(0, 255, 136);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-orange {
     height: 47px;
     width: 47px;
     color: rgb(255, 181, 44);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-red {
     height: 47px;
     width: 47px;
     color: rgb(255, 30, 0);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-purple {
     height: 47px;
     width: 47px;
     color: rgb(174, 0, 255);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-cyan {
     height: 47px;
     width: 47px;
     color: rgb(34, 74, 161);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-black {
     height: 47px;
     width: 47px;
     color: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
-.rectangle-list-icon-white {
+.rectangle-list-icon-magenta {
     height: 47px;
     width: 47px;
     color: rgb(136, 61, 102);
+    cursor: pointer;
 }
 
 .rectangle-list-icon-yellow {
     height: 47px;
     width: 47px;
     color: rgb(243, 255, 73);
+    cursor: pointer;
 }

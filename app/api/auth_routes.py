@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
@@ -80,3 +81,22 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+
+@auth_routes.route('/<int:id>', methods=["PUT"])
+def update_user(id):
+
+    user = User.query.get(id)
+
+    print('\n\n\n\n\n\n', request.json, '\n\n\n\n\n\n\n\n')
+
+    if 'profile_pic' in request.json:
+        user.profile_pic = request.json["profile_pic"]
+    if 'username' in request.json:
+        user.username = request.json["username"]
+    if 'about_me' in request.json:
+        user.about_me = request.json["about_me"]
+
+    db.session.add(user)
+    db.session.commit()
+    return user.to_dict()

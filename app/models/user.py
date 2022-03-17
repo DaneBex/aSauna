@@ -1,6 +1,8 @@
+from email.policy import default
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -12,6 +14,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.Text, nullable=True)
     about_me = db.Column(db.Text, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.now())
 
     projects = db.relationship("Project", back_populates="user", cascade="all, delete")
     tasks = db.relationship("Task", back_populates="user", cascade="all, delete")
@@ -35,4 +38,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_pic': self.profile_pic,
             'about_me': self.about_me,
+            "created_at": self.created_at
         }

@@ -10,7 +10,7 @@ const ColorPicker = () => {
     else if (num === 6) return 'purple'
     else if (num === 7) return 'cyan'
     else if (num === 8) return 'black'
-    else if (num === 9) return 'white'
+    else if (num === 9) return 'magenta'
     else if (num === 0) return 'yellow'
 }
 

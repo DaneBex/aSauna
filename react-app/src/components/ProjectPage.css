@@ -22,3 +22,141 @@
 .project-page-name {
     font-size: 20px;
 }
+
+.down-project-option {
+    position: relative;
+}
+
+.project-options-box {
+    position: absolute;
+    top: 60px;
+    left: 100px;
+    width: 190px;
+    border: 1px solid #e6e3e3;
+    border-radius: 8px;
+    padding: 4px 0;
+}
+
+.edit-project {
+    padding: 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    gap: 5px;
+    border-bottom: 1px solid #e6e3e3;
+    cursor: pointer;
+}
+
+.delete-project {
+    padding: 0 24px;
+    color: red;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#blue-picker {
+    background-color: aqua;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#pink-picker {
+    background-color: rgb(235, 107, 224);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#green-picker {
+    background-color: rgb(0, 255, 136);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#orange-picker {
+    background-color: rgb(255, 181, 44);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#red-picker {
+    background-color: rgb(255, 30, 0);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#purple-picker {
+    background-color: rgb(174, 0, 255);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#cyan-picker {
+    background-color: rgb(34, 74, 161);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#black-picker {
+    background-color: rgb(0, 0, 0);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#magenta-picker {
+    background-color: rgb(136, 61, 102);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#yellow-picker {
+    background-color: rgb(243, 255, 73);
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.color-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid #e6e3e3;
+    padding: 24px 24px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    cursor: pointer;
+}
+
+.color-picker-list {
+    display: flex;
+    gap: 2px;
+    cursor: pointer;
+}
+
+.down-project-option {
+    cursor: pointer;
+}

@@ -56,6 +56,8 @@ def update_task(id):
 
     if 'due_date' in request.json:
         task.due_date = request.json["due_date"]
+    if 'new_name' in request.json:
+        task.name = request.json["new_name"]
 
 
 

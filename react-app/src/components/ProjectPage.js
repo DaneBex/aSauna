@@ -123,6 +123,12 @@ const ProjectPage = () => {
         dispatch(populateProjectsByUser(user.id))
     }
 
+    const updateTaskNameHandler = (id, e) => {
+        console.log(e.target.value)
+        dispatch(updateTask(id, {"new_name": e.target.value}))
+        dispatch(populateProjectsByUser(user.id))
+    }
+
 
     return (
         <div className="project-page-whole-page">
@@ -287,7 +293,7 @@ const ProjectPage = () => {
                         <div className="project-task-active">
                             <div className="task-name">
                                 <FontAwesomeIcon className="task-check-icon" icon={farCircleCheck} />
-                                <input value={task.name} className="task-name-input" />
+                                <input onBlur={(e) => updateTaskNameHandler(task.id, e)} defaultValue={task.name} className="task-name-input" />
                             </div>
                             <div className="task-duedate">
                                 {task.due_date &&

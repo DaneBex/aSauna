@@ -21,10 +21,10 @@ class Task(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "name": self.name,
             "owner_id": self.owner_id,
             "section_id": self.section_id,
             "project_id": self.project_id,
-            "name": self.name,
             "details": self.details,
             "status": self.status,
             "due_date": self.due_date,

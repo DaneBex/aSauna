@@ -19,7 +19,7 @@ def create_project():
 
 @projects_routes.route('/<int:id>')
 def get_projects(id):
-    projects = Project.query.filter_by(owner_id=id).all()
+    projects = Project.query.filter(Project.owner_id == id).all()
 
     projectToDict = []
     for project in projects:

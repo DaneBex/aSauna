@@ -9,6 +9,8 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .project-top-left-top {
@@ -412,6 +414,7 @@
     width: 185px;
     height: 157px;
     border-radius: 8px;
+    z-index: 30;
     top: 35px;
     padding: 4px 0;
 }
@@ -425,6 +428,12 @@
     width: 40%;
     height: 100%;
     outline: none;
+    transition-duration: .5s;
+    cursor: pointer;
+}
+
+.task-name:hover {
+    background-color: #e6e3e3;
 }
 
 .project-task-active {
@@ -453,6 +462,7 @@
 
 .task-duedate-input {
     border: none;
+    width: 100%;
 }
 
 .enter-task-priority:hover {
@@ -461,6 +471,7 @@
 
 .priority-option {
     padding: 0 12px 0 36px;
+    background-color: white;
     height: 36px;
     display: flex;
     align-items: center;
@@ -564,4 +575,70 @@
 
 .task-duedate-data {
     font-size: 12px;
+}
+
+.task-details-sidebar {
+    position: absolute;
+    right: 0;
+    top: 100px;
+    height: 167%;
+    width: 50%;
+    background-color: white;
+    z-index: 31;
+    border: 1px solid #cfcbcb
+}
+
+.task-top-header {
+    height: 7%;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #cfcbcb;
+}
+
+.mark-task-complete-button {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cfcbcb;
+    height: 40%;
+    font-size: 12px;
+    width: 120px;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 8px;
+}
+
+.task-details-main {
+    padding: 0 24px;
+    height: 80%;
+}
+
+.task-details-name {
+    margin-top: 5px;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 6px 12px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.duedate-data-in-details {
+    border: 1px soldi red;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.task-details-label {
+    font-size: 14px;
+    color: #7a7a7a
+}
+
+.duedate-data-compiled {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
 }

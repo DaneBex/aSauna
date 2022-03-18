@@ -61,19 +61,19 @@ const ProjectPage = () => {
         else setPjColors(true)
     }
 
-    const closePriority = (id) => {
-        if (taskPriority) setTaskPriority(false)
-        else setTaskPriority(id)
-    }
-
     const closeStatus = () => {
         // e.stopPropogation()
         if (statusSetting) setStatusSetting(false)
         else setStatusSetting(true)
     }
 
-    const closeTaskStatus = (id) => {
-        if (taskStatus) setTaskStatus(false)
+    const closePriority = (id) => {
+        if (taskPriority) setTaskPriority(0)
+        else setTaskPriority(id)
+    }
+
+    const closeStatusBox = (id) => {
+        if (taskStatus) setTaskStatus(0)
         else setTaskStatus(id)
     }
 
@@ -91,13 +91,13 @@ const ProjectPage = () => {
         else setProfOpen(true)
     }
 
-    const setDesire = (n) => {
-        console.log('hello there')
-        if (n === 0) setDesiredPriority('none')
-        else if (n === 1) setDesiredPriority('low')
-        else if (n === 2) setDesiredPriority('medium')
-        else if (n === 3) setDesiredPriority('high')
-    }
+    // const setDesire = (n) => {
+    //     console.log('hello there')
+    //     if (n === 0) setDesiredPriority('none')
+    //     else if (n === 1) setDesiredPriority('low')
+    //     else if (n === 2) setDesiredPriority('medium')
+    //     else if (n === 3) setDesiredPriority('high')
+    // }
 
     const removeProject = (id) => {
         dispatch(deleteProject(id))
@@ -115,9 +115,15 @@ const ProjectPage = () => {
     }
 
     const updateTaskPriority = () => {
-        // console.log(id, str)
+        console.log(taskPriority, desiredPriority)
         dispatch(updateTask(taskPriority, desiredPriority))
         setTaskPriority(0)
+        dispatch(populateProjectsByUser(user.id))
+    }
+
+    const updateTaskStatus = () => {
+        dispatch(updateTask(taskStatus, desiredPriority))
+        setTaskStatus(0)
         dispatch(populateProjectsByUser(user.id))
     }
 
@@ -407,7 +413,7 @@ const ProjectPage = () => {
                                     </div>
                                 }
                             </div>
-                            <div onClick={() => closeTaskStatus(task.id)} className="enter-task-status">
+                            <div onClick={() => closeStatusBox(task.id)} className="enter-task-status">
                                 {task.status === null || task.status === 0 &&
                                     <p>-</p>
                                 }
@@ -422,16 +428,28 @@ const ProjectPage = () => {
                                 }
                                 {taskStatus === task.id &&
                                     <div className="priority-option-box">
-                                        <div onClick={() => updateTaskPriority(task.id, 'status-none')} className="priority-option">
+                                        <div onClick={() => {
+                                            setDesiredPriority('status-none')
+                                            updateTaskStatus()
+                                        } } className="priority-option">
                                             <p className="status-option-none">None</p>
                                         </div>
-                                        <div onClick={() => updateTaskPriority(task.id, 'on-track')} className="priority-option">
+                                        <div onClick={() => {
+                                            setDesiredPriority('on-track')
+                                            updateTaskStatus()
+                                        } } className="priority-option">
                                             <p className="status-option-ontrack">On track</p>
                                         </div>
-                                        <div onClick={() => updateTaskPriority(task.id, 'at-risk')} className="priority-option">
+                                        <div onClick={() => {
+                                            setDesiredPriority('at-risk')
+                                            updateTaskStatus()
+                                        } } className="priority-option">
                                             <p className="status-option-atrisk">At risk</p>
                                         </div>
-                                        <div onClick={() => updateTaskPriority(task.id, 'off-track')} className="priority-option">
+                                        <div onClick={() => {
+                                            setDesiredPriority('off-track')
+                                            updateTaskStatus()
+                                        } } className="priority-option">
                                             <p className="status-option-offtrack">Off track</p>
                                         </div>
                                     </div>

@@ -112,6 +112,12 @@ def update_project(id):
     if request.json == 'complete':
         project.status = 5
 
+    if "due_date" in request.json:
+        project.due_date = request.json["due_date"]
+    if "details" in request.json:
+        project.details = request.json["details"]
+
+
 
 
 

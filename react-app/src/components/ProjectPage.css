@@ -1,6 +1,7 @@
 .project-page-whole-page {
     display: flex;
     overflow: hidden;
+    height: 100%;
 }
 
 .main-project-page {
@@ -210,6 +211,7 @@
     width: 185px;
     height: 227px;
     padding: 4px 0;
+    background-color: white;
 }
 
 .top-of-status-box {
@@ -610,7 +612,11 @@
 
 .task-details-main {
     padding: 0 24px;
-    height: 80%;
+    padding-bottom: 10px;
+    height: 205;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .task-details-name {
@@ -641,4 +647,215 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
+}
+
+.task-details-description {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+    height: 150%;
+}
+
+.description-data-in-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-details-add-comments {
+    height: 15%;
+    padding: 8px 24px;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #cfcbcb;
+}
+
+.task-details-prof-pic {
+    background-color: #f8f8f8;
+    width: 100%;
+    display: flex;
+    gap: 5px;
+}
+
+.task-commentbox-prof {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.task-details-add-comment-box {
+    border: 1px solid #cfcbcb;
+    height: 110px;
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+}
+
+.task-details-comment-textarea {
+    height: 70%;
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+.submit-comment-div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.task-details-comment-submit-nothing {
+    width: 22%;
+    height: 27%;
+    border: 1px solid #cfcbcb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    color: #cfcbcb
+}
+
+.task-details-comment-submit {
+    width: 22%;
+    height: 27%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    background-color: rgb(0, 140, 255);
+    color: white;
+    cursor: pointer;
+}
+
+.comments-show-div {
+    background-color: #f5f4f3;
+    width: 100%;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+}
+
+.each-comment-div {
+    height: auto;
+    padding: 8px 24px;
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+.each-comment-prof-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.comment-name-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-info-username {
+    font-weight: 900;
+}
+
+.task-details-main-comments {
+    overflow: scroll;
+    height: 30%;
+}
+
+.task-comments-num {
+    display: flex;
+    gap: 5px;
+}
+
+.edit-delete-comment-dropdown {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.comment-options-dropdown {
+    border: 1px solid #cfcbcb;
+    padding: 4px 0;
+    height: 75px;
+    background-color: white;
+    position: absolute;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    border-radius: 8px;
+}
+
+.comment-dropdown-option {
+    height: 36px;
+    padding: 0 12px;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.comment-dropdown-option:hover {
+    background-color: #f5f4f3;
+}
+
+.task-details-edit-comment-box {
+    width: 170%;
+    height: 90%;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.task-details-edit-comment-textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.cancel-edit-comment-button{
+    border: 1px solid #cfcbcb;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.task-details-comment-edit-submit-nothing {
+    height: 36px;
+    border: 1px solid #cfcbcb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border-radius: 8px;
+    color: #868585
+}
+
+.task-details-comment-edit-submit {
+    height: 36px;
+    background-color: rgb(0, 140, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
 }

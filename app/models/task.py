@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 class Task(db.Model):
     __tablename__ = 'tasks'
@@ -12,6 +13,7 @@ class Task(db.Model):
     status = db.Column(db.Integer)
     due_date = db.Column(db.DateTime)
     priority = db.Column(db.Integer)
+    # created_at = db.Column(db.DateTime, default=datetime.now())
 
     user = db.relationship("User", back_populates="tasks")
     project = db.relationship("Project", back_populates="tasks")
@@ -28,5 +30,8 @@ class Task(db.Model):
             "details": self.details,
             "status": self.status,
             "due_date": self.due_date,
-            "priority": self.priority
+            "priority": self.priority,
+            "project": self.project.name,
+            "comments": [comment.to_dict() for comment in self.comments]
+            # "created_at": self.created_at
         }

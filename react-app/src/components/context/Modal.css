@@ -30,6 +30,7 @@
     width: 600px;
     border-radius: 8px;
     border-bottom: 1px solid #e6e3e3;
+    z-index: 100000;
   }
 
   #modal-content-two {
@@ -39,4 +40,5 @@
     width: 600px;
     border-radius: 8px;
     border-bottom: 1px solid #e6e3e3;
+    z-index: 1000;
   }

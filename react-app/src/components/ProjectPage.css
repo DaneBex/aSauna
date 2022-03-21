@@ -432,6 +432,7 @@
     outline: none;
     transition-duration: .5s;
     cursor: pointer;
+    position: relative;
 }
 
 .task-name:hover {
@@ -596,6 +597,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #cfcbcb;
+    justify-content: space-between;
 }
 
 .mark-task-complete-button {
@@ -608,6 +610,21 @@
     justify-content: center;
     gap: 10px;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.mark-task-complete-button-complete {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cfcbcb;
+    height: 40%;
+    font-size: 12px;
+    width: 120px;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: rgba(23, 180, 120, 0.2);
+    cursor: pointer;
 }
 
 .task-details-main {
@@ -858,4 +875,23 @@
     color: white;
     font-weight: 900;
     cursor: pointer;
+}
+
+.close-task-details-icon {
+    cursor: pointer;
+}
+
+.task-check-icon {
+    z-index: 5;
+}
+
+.task-check-icon-complete {
+    color: rgb(23, 180, 120);
+    z-index: 5;
+}
+
+.delete-task-icon {
+    position: absolute;
+    right: 20px;
+    z-index: 5;
 }

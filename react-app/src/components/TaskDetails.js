@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { faCircle as fasCircle, faCheck, faCircleCheck as fasCircleCheck } from "@fortawesome/free-solid-svg-icons"
+import { faCircle as fasCircle, faX, faCheck, faCircleCheck as fasCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useDispatch, useSelector } from "react-redux";
 import { updateTask, deleteTask, populateTasksByProject } from "../store/task";
@@ -7,13 +7,14 @@ import { populateProjectsByUser } from "../store/project";
 import { createComment, populateCommentsByTask } from "../store/comment";
 import Comment from "./Comment";
 
-const TaskDetails = ({ task, project }) => {
+const TaskDetails = ({ task, project, closeTaskDetails }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session?.user)
     const projects = useSelector(state => Object.values(state.project))
     const tasks = useSelector(state => Object.values(state.task))
     const comments = useSelector(state => Object.values(state.comment))
     let submitComment;
+    let thisStatus;
 
     const [comment, setComment] = useState('')
 
@@ -26,6 +27,11 @@ const TaskDetails = ({ task, project }) => {
             dispatch(updateTask(id, { "new_name": e.target.value }))
             dispatch(populateProjectsByUser(user.id))
         }
+    }
+
+    const updateTaskStatus = () => {
+        dispatch(updateTask(task.id, thisStatus))
+        dispatch(populateProjectsByUser(user.id))
     }
 
     const updateTaskDetailsHandler = (id, e) => {
@@ -65,10 +71,34 @@ const TaskDetails = ({ task, project }) => {
     return (
         <div className="task-details-sidebar">
             <div className="task-top-header">
-                <div className="mark-task-complete-button">
-                    <FontAwesomeIcon icon={faCheck} className="checkmark-task-icon" />
-                    <p>Mark complete</p>
-                </div>
+                {task.status === null &&
+                    <div onClick={() => {
+                        thisStatus = 'complete'
+                        updateTaskStatus()
+                    }} className="mark-task-complete-button">
+                        <FontAwesomeIcon icon={faCheck} className="checkmark-task-icon" />
+                        <p>Mark complete</p>
+                    </div>
+                }
+                {task.status < 4 &&
+                    <div onClick={() => {
+                        thisStatus = 'complete'
+                        updateTaskStatus()
+                    }} className="mark-task-complete-button">
+                        <FontAwesomeIcon icon={faCheck} className="checkmark-task-icon" />
+                        <p>Mark complete</p>
+                    </div>
+                }
+                {task.status === 4 &&
+                    <div onClick={() => {
+                        thisStatus = 'status-none'
+                        updateTaskStatus()
+                    }} className="mark-task-complete-button-complete">
+                        <FontAwesomeIcon icon={faCheck} className="checkmark-task-icon" />
+                        <p>Complete</p>
+                    </div>
+                }
+                <FontAwesomeIcon onClick={() => closeTaskDetails(task.id)} className="close-task-details-icon" icon={faX} />
             </div>
             <div className="task-details-main-comments">
                 <div className="task-details-main">
@@ -128,7 +158,7 @@ const TaskDetails = ({ task, project }) => {
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
 
         </div>
     )

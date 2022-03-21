@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-    faSquarePlus, faCircleCheck as farCircleCheck, faCaretSquareDown, faComment, faRectangleList, faCircleDown, faPenToSquare, faCircleQuestion, faPlusSquare, faCircle as farCircle
+    faSquarePlus, faTrashCan, faCircleCheck as farCircleCheck, faCaretSquareDown, faComment, faRectangleList, faCircleDown, faPenToSquare, faCircleQuestion, faPlusSquare, faCircle as farCircle
 } from "@fortawesome/free-regular-svg-icons";
 import { faCircle as fasCircle, faCheck, faCircleCheck as fasCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux";
@@ -57,6 +57,12 @@ const Task = ({ task, thisPJ }) => {
         // window.location.reload(false)
     }
 
+    const deleteTaskHandler = () => {
+        dispatch(deleteTask(task.id))
+        dispatch(populateProjectsByUser())
+        dispatch(populateTasksByProject(thisPJ.id))
+    }
+
     const updateTaskStatus = () => {
         dispatch(updateTask(task.id, thisStatus))
         setTaskStatus(0)
@@ -86,7 +92,24 @@ const Task = ({ task, thisPJ }) => {
     return (
         <div className="project-task-active">
             <div onClick={() => closeTaskDetails(task.id)} className="task-name">
-                <FontAwesomeIcon className="task-check-icon" icon={farCircleCheck} />
+                {task.status === null &&
+                    <FontAwesomeIcon onClick={() => {
+                        thisStatus = 'complete'
+                        updateTaskStatus()
+                    }} className="task-check-icon" icon={farCircleCheck} />
+                }
+                {task.status < 4 &&
+                    <FontAwesomeIcon onClick={() => {
+                        thisStatus = 'complete'
+                        updateTaskStatus()
+                    }} className="task-check-icon" icon={farCircleCheck} />
+                }
+                {task.status === 4 &&
+                    <FontAwesomeIcon onClick={() => {
+                        thisStatus = 'status-none'
+                        updateTaskStatus()
+                    }} className="task-check-icon-complete" icon={fasCircleCheck} />
+                }
                 <input onBlur={(e) => updateTaskNameHandler(task.id, e)} defaultValue={task.name} className="task-name-input" />
                 {task.comments.length > 0 &&
                     <div className="task-comments-num">
@@ -94,9 +117,10 @@ const Task = ({ task, thisPJ }) => {
                         <FontAwesomeIcon icon={faComment} className="task-comment-icon" />
                     </div>
                 }
+                <FontAwesomeIcon onClick={() => deleteTaskHandler()} className="delete-task-icon" icon={faTrashCan} />
             </div>
             {showTaskDetails === task.id &&
-                <TaskDetails task={task} project={thisPJ} />
+                <TaskDetails task={task} project={thisPJ} closeTaskDetails={closeTaskDetails} updateTaskStatus={updateTaskStatus} />
             }
             <div className="task-duedate">
                 {task.due_date &&

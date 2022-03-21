@@ -93,12 +93,13 @@ const taskReducer = (state = {}, action) => {
             action.tasks.tasks.forEach(task => {
                 newState[task.id] = task
             })
-            console.log(newState)
             return newState;
         }
         case ADD_TASK: {
+            console.log(action.task)
             newState = { ...state }
-            newState[action.task.id] = action.task
+            newState = { ...state, [action.task.id]: action.task}
+            // newState[action.task.id] = action.task
             return newState
         }
         case DELETE_TASK: {

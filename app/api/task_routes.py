@@ -54,6 +54,8 @@ def update_task(id):
         task.priority = 2
     if request.json == 'high':
         task.priority = 3
+    if request.json == 'complete':
+        task.status = 4
     if request.json == 'status-none':
         task.status = 0
     if request.json == 'on-track':
@@ -72,6 +74,6 @@ def update_task(id):
 
 
 
-    db.session.add(task)
+    # db.session.add(task)
     db.session.commit()
     return task.to_dict()

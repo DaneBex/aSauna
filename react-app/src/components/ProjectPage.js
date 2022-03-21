@@ -32,7 +32,9 @@ const ProjectPage = () => {
 
 
     const projects = useSelector(state => Object.values(state.project))
-    const tasks = useSelector(state => Object.values(state.task))
+    const tasks = useSelector(state => Object.values(state.task).filter(task => {
+        return task.project_id === parseInt(projectId)
+    }))
     const thisPJ = projects.find(project => project.id === parseInt(projectId))
 
 

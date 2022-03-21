@@ -30,4 +30,5 @@ class Project(db.Model):
             "user_username": self.user.username,
             "user_prof_pic": self.user.profile_pic,
             "tasks": [task.to_dict() for task in self.tasks],
+            "due_date": self.due_date,
         }

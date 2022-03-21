@@ -1,0 +1,154 @@
+.main-project-overview {
+    display: flex;
+}
+
+.project-overview-left {
+    display: flex;
+    width: 50%;
+    height: 100%;
+    padding: 48px 32px;
+    flex-direction: column;
+}
+
+.overview-right-status {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-overview-right {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    gap: 40px;
+    width: 50%;
+    background-color: rgb(248, 248, 248);
+    height: 1000px;
+}
+
+.overview-status-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.overview-ontrack-button-ontrack {
+    display: flex;
+    border: 1px solid #cfcbcb;
+    width: 100px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.overview-ontrack-button-ontrack:hover {
+    background-color: rgba(0, 255, 136, 0.2);
+}
+
+.overview-ontrack-button-atrisk {
+    display: flex;
+    border: 1px solid #cfcbcb;
+    width: 100px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.overview-ontrack-button-atrisk:hover {
+    background-color: rgba(229, 245, 11, 0.2);;
+}
+
+.overview-ontrack-button-offtrack {
+    display: flex;
+    border: 1px solid #cfcbcb;
+    width: 100px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.overview-ontrack-button-offtrack:hover {
+    background-color: rgba(255, 30, 0, 0.2);
+}
+
+.ellipsis-dropdown-status {
+    cursor: pointer;
+    position: relative;
+}
+
+.complete-project-status-box {
+    position: absolute;
+    top: 15px;
+    border: 1px solid #cfcbcb;
+    width: 185px;
+    height: 36px;
+    padding: 0 12px;
+    right: -60px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.complete-project-status-box:hover {
+    background-color: #f7f7f7;
+}
+
+.overview-duedate {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.overview-duedate-data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.overview-duedate-data-date-past {
+    color:rgba(255, 30, 0)
+}
+
+.overview-duedate-data-date-future {
+    color:rgb(12, 211, 118)
+}
+
+.project-overview-details-header {
+    font-weight: 900;
+    font-size: 20px;
+    width: 80%;
+}
+
+.project-overview-details-textarea {
+    width: 80%;
+    height: 90%;
+    resize: none;
+    outline: none;
+    border: none;
+}
+
+.project-overview-details {
+    height: 20%;
+}

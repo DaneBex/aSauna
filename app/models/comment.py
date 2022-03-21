@@ -16,5 +16,7 @@ class Comment(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "task_id": self.task_id,
-            "comment": self.comment
+            "comment": self.comment,
+            "user_prof_pic": self.user.profile_pic,
+            "user_username": self.user.username
         }

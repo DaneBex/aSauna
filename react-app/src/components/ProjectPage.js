@@ -14,12 +14,13 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 import EditProjectModal from "./EditProjectModal";
 import ProfileOptionModal from "./ProfileOptionModal";
 import { logout } from "../store/session";
-import { createTask, populateTasksByProject, updateTask } from "../store/task";
+import { createTask, deleteTask, populateTasksByProject, updateTask } from "../store/task";
+import Task from "./Task";
+import ProjectTop from "./ProjectTop";
 
 
 const ProjectPage = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const user = useSelector(state => state.session.user)
 
     const { projectId } = useParams()
@@ -31,108 +32,13 @@ const ProjectPage = () => {
 
 
     const projects = useSelector(state => Object.values(state.project))
-    const tasks = useSelector(state => Object.values(state?.task))
-    console.log(tasks)
+    const tasks = useSelector(state => Object.values(state.task))
     const thisPJ = projects.find(project => project.id === parseInt(projectId))
 
-    const [pjDetails, setPjDetails] = useState(false)
-    const [pjColors, setPjColors] = useState(false)
-    const [pjSettings, setPjSettings] = useState(false)
-    const [statusSetting, setStatusSetting] = useState(false)
-    const [profOpen, setProfOpen] = useState(false)
-    const [taskPriority, setTaskPriority] = useState(0)
-    const [desiredPriority, setDesiredPriority] = useState('')
+
     const [task, setTask] = useState('')
-    const [taskStatus, setTaskStatus] = useState(false)
-    const [date, setDate] = useState(false)
-    const [showTaskDetails, setShowTaskDetails] = useState(false)
 
 
-
-    // console.log(thisPJ)
-
-    const closePJOptions = () => {
-        if (pjDetails) setPjDetails(false)
-        else setPjDetails(true)
-    }
-
-    const closePjColors = () => {
-        if (pjColors) setPjColors(false)
-        else setPjColors(true)
-    }
-
-    const closeStatus = () => {
-        // e.stopPropogation()
-        if (statusSetting) setStatusSetting(false)
-        else setStatusSetting(true)
-    }
-
-    const closePriority = (id) => {
-        if (taskPriority) setTaskPriority(0)
-        else setTaskPriority(id)
-    }
-
-    const closeStatusBox = (id) => {
-        if (taskStatus) setTaskStatus(0)
-        else setTaskStatus(id)
-    }
-
-    const closeTaskDetails = (id) => {
-        if (showTaskDetails) setShowTaskDetails(false)
-        else setShowTaskDetails(id)
-    }
-
-    const logoutHandler = () => {
-        dispatch(logout())
-    }
-
-    const closeProf = () => {
-        if (profOpen) setProfOpen(false)
-        else setProfOpen(true)
-    }
-
-    // const setDesire = (n) => {
-    //     console.log('hello there')
-    //     if (n === 0) setDesiredPriority('none')
-    //     else if (n === 1) setDesiredPriority('low')
-    //     else if (n === 2) setDesiredPriority('medium')
-    //     else if (n === 3) setDesiredPriority('high')
-    // }
-
-    const removeProject = (id) => {
-        dispatch(deleteProject(id))
-        return history.push('/')
-    }
-
-    const updatePjColor = (e) => {
-        setPjColors(false)
-        dispatch(updateProject(thisPJ?.id, e.target.id))
-    }
-
-    const updatePjStatus = (str) => {
-        setStatusSetting(false)
-        dispatch(updateProject(thisPJ?.id, str))
-    }
-
-    const updateTaskPriority = () => {
-        console.log(taskPriority, desiredPriority)
-        dispatch(updateTask(taskPriority, desiredPriority))
-        setTaskPriority(0)
-        dispatch(populateProjectsByUser(user.id))
-    }
-
-    const updateTaskStatus = () => {
-        dispatch(updateTask(taskStatus, desiredPriority))
-        setTaskStatus(0)
-        dispatch(populateProjectsByUser(user.id))
-    }
-
-    const submitDateHandler = (e, id) => {
-        // console.log(e.target.value)
-        dispatch(updateTask(id, { "due_date": e.target.value }))
-        // dispatch(populateTasksByProject(thisPJ.id))
-        dispatch(populateProjectsByUser(user.id))
-    }
 
     const createTaskHandler = () => {
         if (task) {
@@ -148,147 +54,11 @@ const ProjectPage = () => {
         }
     }
 
-    const updateTaskNameHandler = (id, e) => {
-        console.log(e.target.value)
-        dispatch(updateTask(id, { "new_name": e.target.value }))
-        dispatch(populateProjectsByUser(user.id))
-    }
-
-
     return (
         <div className="project-page-whole-page">
             <NavBar projects={projects} />
             <div className="main-project-page">
-                <div className="project-top-of-home">
-                    <div className="project-page-top-left">
-                        <div className="project-top-left-top">
-                            {thisPJ && thisPJ.color &&
-                                <FontAwesomeIcon onClick={closePjColors} className={`rectangle-list-icon-${thisPJ.color}`} icon={faRectangleList} />
-                            }
-                            {thisPJ && thisPJ.color === null &&
-                                <FontAwesomeIcon onClick={closePjColors} className={`rectangle-list-icon-${ColorPicker()}`} icon={faRectangleList} />
-                            }
-                            {pjColors &&
-                                <div className="color-selection">
-                                    <div className="color-picker-list">
-                                        <div onClick={updatePjColor} id="blue-picker" />
-                                        <div onClick={updatePjColor} id="pink-picker" />
-                                        <div onClick={updatePjColor} id="green-picker" />
-                                        <div onClick={updatePjColor} id="orange-picker" />
-                                        <div onClick={updatePjColor} id="red-picker" />
-                                    </div>
-                                    <div className="color-picker-list">
-                                        <div onClick={updatePjColor} id="purple-picker" />
-                                        <div onClick={updatePjColor} id="cyan-picker" />
-                                        <div onClick={updatePjColor} id="black-picker" />
-                                        <div onClick={updatePjColor} id="magenta-picker" />
-                                        <div onClick={updatePjColor} id="yellow-picker" />
-                                    </div>
-                                </div>
-                            }
-                            {thisPJ && thisPJ.name.length > 11 &&
-                                <h1 className="project-page-name">{thisPJ.name.slice(0, 11) + '...'}</h1>
-                            }
-                            {thisPJ && thisPJ.name.length < 12 &&
-                                <h1 className="project-page-name">{thisPJ.name}</h1>
-                            }
-                            <FontAwesomeIcon onClick={closePJOptions} className="down-project-option" icon={faCircleDown} />
-                            {pjDetails &&
-                                <div className="project-options-box">
-
-                                    <div className="delete-project">
-                                        <p onClick={() => removeProject(projectId)}>Delete Project</p>
-                                    </div>
-                                </div>
-                            }
-                            <EditProjectModal project={thisPJ} />
-                            <div onClick={(e) => closeStatus()} className="set-status-div">
-                                {thisPJ?.status === null &&
-                                    <>
-                                        <FontAwesomeIcon className="set-status-circle" icon={farCircle} />
-                                        <p className="status-text">Set status</p>
-                                    </>
-                                }
-                                {thisPJ?.status === 1 &&
-                                    <>
-                                        <FontAwesomeIcon className="set-status-circle-green" icon={fasCircle} />
-                                        <p className="status-text">On track</p>
-                                    </>
-                                }
-                                {thisPJ?.status === 2 &&
-                                    <>
-                                        <FontAwesomeIcon className="set-status-circle-yellow" icon={fasCircle} />
-                                        <p className="status-text">At risk</p>
-                                    </>
-                                }
-                                {thisPJ?.status === 3 &&
-                                    <>
-                                        <FontAwesomeIcon className="set-status-circle-red" icon={fasCircle} />
-                                        <p className="status-text">Off track</p>
-                                    </>
-                                }
-                                {thisPJ?.status === 4 &&
-                                    <>
-                                        <FontAwesomeIcon className="set-status-circle-blue" icon={fasCircle} />
-                                        <p className="status-text">On hold</p>
-                                    </>
-                                }
-                                {thisPJ?.status === 5 &&
-                                    <>
-                                        <FontAwesomeIcon className="set-status-check" icon={fasCircleCheck} />
-                                        <p className="status-text">Complete!</p>
-                                    </>
-                                }
-                                {statusSetting &&
-                                    <div className="set-status-box">
-                                        <div className="top-of-status-box">Update status</div>
-                                        <div className="all-status-options">
-                                            <div onClick={() => updatePjStatus('green')} className="status-option">
-                                                <FontAwesomeIcon className="set-status-circle-green" icon={fasCircle} />
-                                                <p className="status-text">On track</p>
-                                            </div>
-                                            <div onClick={() => updatePjStatus('yellow')} className="status-option">
-                                                <FontAwesomeIcon className="set-status-circle-yellow" icon={fasCircle} />
-                                                <p className="status-text">At risk</p>
-                                            </div>
-                                            <div onClick={() => updatePjStatus('red')} className="status-option">
-                                                <FontAwesomeIcon className="set-status-circle-red" icon={fasCircle} />
-                                                <p className="status-text">Off track</p>
-                                            </div>
-                                            <div onClick={() => updatePjStatus('blue')} className="status-option">
-                                                <FontAwesomeIcon className="set-status-circle-blue" icon={fasCircle} />
-                                                <p className="status-text">On hold</p>
-                                            </div>
-                                        </div>
-                                        <div onClick={() => updatePjStatus('complete')} className="status-option">
-                                            <FontAwesomeIcon className="set-status-check" icon={fasCircleCheck} />
-                                            <p className="status-text-complete">Complete</p>
-                                        </div>
-                                    </div>
-                                }
-
-
-                            </div>
-                        </div>
-                        <div className="project-top-left-bottom">
-                            <p className="project-view-options">Overview</p>
-                            <p className="project-view-options">List</p>
-                        </div>
-                    </div>
-                    {user.profile_pic &&
-                        <img onClick={closeProf} className="user-prof-pic" src={user.profile_pic} />
-                    }
-                    {user.profile_pic === null &&
-                        <img onClick={closeProf} className="user-prof-pic" src='https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg' />
-                    }
-                    {profOpen &&
-                        <div className="profile-options-project-page">
-                            <ProfileOptionModal user={user} />
-                            <p onClick={logoutHandler} className="profile-option">Log Out</p>
-
-                        </div>
-                    }
-                </div>
+                <ProjectTop thisPJ={thisPJ} />
                 <div className="lower-project-page">
                     <div className="add-task-button-div-projects">
                         <div className="add-task-button">
@@ -315,147 +85,7 @@ const ProjectPage = () => {
                         </div>
                     </div>
                     {thisPJ?.tasks.length > 0 && thisPJ.tasks.map(task => (
-                        <div className="project-task-active">
-                            <div onClick={() => closeTaskDetails(task.id)} className="task-name">
-                                <FontAwesomeIcon className="task-check-icon" icon={farCircleCheck} />
-                                <input onBlur={(e) => updateTaskNameHandler(task.id, e)} defaultValue={task.name} className="task-name-input" />
-                            </div>
-                            {showTaskDetails === task.id &&
-                                <div className="task-details-sidebar">
-                                    <div className="task-top-header">
-                                        <div className="mark-task-complete-button">
-                                            <FontAwesomeIcon icon={faCheck} className="checkmark-task-icon" />
-                                            <p>Mark complete</p>
-                                        </div>
-                                    </div>
-                                    <div className="task-details-main">
-                                        <textarea onBlur={(e) => updateTaskNameHandler(task.id, e)} defaultValue={task.name} className="task-details-name" />
-                                        {task.due_date &&
-                                            <div className="duedate-data-in-details">
-                                                <p className="task-details-label">Due date</p>
-                                                <div className="duedate-data-compiled">
-                                                    <p className="task-duedate-data-details">{task.due_date.slice(0, 16)}</p>
-                                                    <input onChange={(e) => submitDateHandler(e, task.id)} className="task-duedate-input-details" type="date" />
-                                                </div>
-                                            </div>
-                                        }
-                                        {task.due_date === null &&
-                                            <div className="duedate-data-in-details">
-                                                <p className="task-details-label">Due date</p>
-                                                <div className="duedate-data-compiled">
-                                                    <p className="task-duedate-data-details">No due date</p>
-                                                    <input onChange={(e) => submitDateHandler(e, task.id)} className="task-duedate-input-details" type="date" />
-                                                </div>
-                                            </div>
-                                        }
-                                        <div className="duedate-data-in-details">
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            }
-                            <div className="task-duedate">
-                                {task.due_date &&
-                                    <div className="duedate-data-in">
-                                        <p className="task-duedate-data">{task?.due_date.slice(0, 16)}</p>
-                                        <input onChange={(e) => submitDateHandler(e, task.id)} className="task-duedate-input" type="date" />
-                                    </div>
-                                }
-                                {task.due_date === null &&
-                                    <input onChange={(e) => submitDateHandler(e, task.id)} className="task-duedate-input" type="date" />
-                                }
-                            </div>
-                            <div onClick={() => {
-                                closePriority(task.id)
-                                console.log('Task Id:', task.id, 'taskPriority:', taskPriority)
-                            }} className="enter-task-priority">
-                                {task.priority === null || task.priority === 0 &&
-                                    <p>-</p>
-                                }
-                                {task.priority === 1 &&
-                                    <p className="priority-option-low">Low</p>
-                                }
-                                {task.priority === 2 &&
-                                    <p className="priority-option-medium">Medium</p>
-                                }
-                                {task.priority === 3 &&
-                                    <p className="priority-option-high">High</p>
-                                }
-                                {taskPriority === task.id &&
-                                    <div className="priority-option-box">
-                                        <div onClick={() => {
-                                           setDesiredPriority('none')
-                                            console.log('taskPriority:', taskPriority, 'desiredPriority:', desiredPriority)
-                                            updateTaskPriority()
-                                        }
-                                        } className="priority-option">
-                                            <p className="priority-option-none">None</p>
-                                        </div>
-                                        <div onClick={() => {
-                                            setDesiredPriority('low')
-                                            updateTaskPriority()
-                                        }} className="priority-option">
-                                            <p className="priority-option-low">Low</p>
-                                        </div>
-                                        <div onClick={() => {
-                                            setDesiredPriority('medium')
-                                            updateTaskPriority()
-                                        }} className="priority-option">
-                                            <p className="priority-option-medium">Medium</p>
-                                        </div>
-                                        <div onClick={() => {
-                                            setDesiredPriority('high')
-                                            updateTaskPriority()
-                                        }} className="priority-option">
-                                            <p className="priority-option-high">High</p>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            <div onClick={() => closeStatusBox(task.id)} className="enter-task-status">
-                                {task.status === null || task.status === 0 &&
-                                    <p>-</p>
-                                }
-                                {task.status === 1 &&
-                                    <p className="status-option-ontrack">On track</p>
-                                }
-                                {task.status === 2 &&
-                                    <p className="status-option-atrisk">At risk</p>
-                                }
-                                {task.status === 3 &&
-                                    <p className="status-option-offtrack">Off track</p>
-                                }
-                                {taskStatus === task.id &&
-                                    <div className="priority-option-box">
-                                        <div onClick={() => {
-                                            setDesiredPriority('status-none')
-                                            updateTaskStatus()
-                                        } } className="priority-option">
-                                            <p className="status-option-none">None</p>
-                                        </div>
-                                        <div onClick={() => {
-                                            setDesiredPriority('on-track')
-                                            updateTaskStatus()
-                                        } } className="priority-option">
-                                            <p className="status-option-ontrack">On track</p>
-                                        </div>
-                                        <div onClick={() => {
-                                            setDesiredPriority('at-risk')
-                                            updateTaskStatus()
-                                        } } className="priority-option">
-                                            <p className="status-option-atrisk">At risk</p>
-                                        </div>
-                                        <div onClick={() => {
-                                            setDesiredPriority('off-track')
-                                            updateTaskStatus()
-                                        } } className="priority-option">
-                                            <p className="status-option-offtrack">Off track</p>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                        <Task task={task} thisPJ={thisPJ} />
                     ))
                     }
                     <div className="write-a-task">

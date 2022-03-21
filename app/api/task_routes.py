@@ -19,14 +19,23 @@ def create_task():
 
 @tasks_routes.route('/<int:id>')
 def get_tasks(id):
-    tasks = Task.query.filter_by(project_id=id).all()
+    # tasksObj = Task.query.filter_by(project_id=id).all()
+    tasks = Task.query.order_by(Task.name).all()
 
     taskToDict = []
     for task in tasks:
-        taskToDict.append(task.to_dict())
+        if task.project_id == id:
+            taskToDict.append(task.to_dict())
 
 
     return {"tasks": taskToDict}
+
+@tasks_routes.route('/<int:id>', methods=["DELETE"])
+def delete_task(id):
+    task = Task.query.get(id)
+    db.session.delete(task)
+    db.session.commit()
+    return {"id": id}
 
 
 @tasks_routes.route('/<int:id>', methods=["PUT"])
@@ -58,6 +67,8 @@ def update_task(id):
         task.due_date = request.json["due_date"]
     if 'new_name' in request.json:
         task.name = request.json["new_name"]
+    if 'new_details' in request.json:
+        task.details = request.json["new_details"]
 
 
 

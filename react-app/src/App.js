@@ -12,6 +12,7 @@ import HomePage from './components/HomePage';
 import NewProject from './components/NewProject';
 import ProjectPage from './components/ProjectPage';
 import ProfileOptionModal from './components/ProfileOptionModal';
+import Overview from './components/Overview';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +52,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/my_projects/:projectId' exact={true} >
          <ProjectPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/my_projects/overview/:projectId' exact={true} >
+          <Overview />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

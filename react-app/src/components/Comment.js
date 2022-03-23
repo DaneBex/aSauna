@@ -29,9 +29,9 @@ const Comment = ({ comment, task, project }) => {
 
     const updateCommentHandler = () => {
         dispatch(updateComment(comment.id, { "new_comment": editedComment }))
-        dispatch(populateCommentsByTask(task.id))
+        // dispatch(populateCommentsByTask(task.id))
         dispatch(populateTasksByProject(project.id))
-        dispatch(populateProjectsByUser(user.id))
+        // dispatch(populateProjectsByUser(user.id))
         setEditComment(0)
     }
 

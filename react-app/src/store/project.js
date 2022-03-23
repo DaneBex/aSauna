@@ -31,7 +31,7 @@ const changeProject = (project) => {
 }
 
 export const createProject = (project) => async (dispatch) => {
-    
+
     const response = await fetch('/api/projects/', {
         method: "POST",
         headers: {
@@ -46,9 +46,9 @@ export const createProject = (project) => async (dispatch) => {
     }
 }
 
-export const populateProjectsByUser = (userId) => async (dispatch) => {
+export const populateProjectsByUser = () => async (dispatch) => {
 
-    const response = await fetch(`/api/projects/${userId}`)
+    const response = await fetch(`/api/projects/`)
 
     if (response.ok) {
         const projects = await response.json()
@@ -89,7 +89,7 @@ const projectReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD_PROJECT_BY_USER: {
-            newState = {};
+            newState = JSON.parse(JSON.stringify(state));
             action.projects.projects.forEach(project => {
                 newState[project.id] = project
             })

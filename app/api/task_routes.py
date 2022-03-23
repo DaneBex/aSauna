@@ -32,7 +32,10 @@ def get_tasks(id):
 
 @tasks_routes.route('/<int:id>', methods=["DELETE"])
 def delete_task(id):
+
     task = Task.query.get(id)
+
+    print('\n\n\n\n\n\n\n\n', task.to_dict(), '\n\n\n\n\n\n\n\n\n\n')
     db.session.delete(task)
     db.session.commit()
     return {"id": id}

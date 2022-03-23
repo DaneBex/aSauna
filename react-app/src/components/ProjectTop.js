@@ -179,10 +179,10 @@ const ProjectTop = ({ thisPJ }) => {
 
                             </div>
                         </div>
-                        {/* <div className="project-top-left-bottom">
-                            <NavLink to={`/my_projects/overview/${thisPJ.id}`} className="project-view-options">Overview</NavLink>
-                            <NavLink to={`/my_projects/${thisPJ.id}`} className="project-view-options">List</NavLink>
-                        </div> */}
+                        <div className="project-top-left-bottom">
+                            <NavLink to={`/my_projects/overview/${thisPJ?.id}`} className="project-view-options">Overview</NavLink>
+                            <NavLink to={`/my_projects/${thisPJ?.id}`} className="project-view-options">List</NavLink>
+                        </div>
                     </div>
                     {user.profile_pic &&
                         <img onClick={closeProf} className="user-prof-pic" src={user.profile_pic} />

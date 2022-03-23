@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     profile_pic = db.Column(db.Text, nullable=True)
     about_me = db.Column(db.Text, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.now())
+    background_color = db.Column(db.String, default='white')
 
     projects = db.relationship("Project", back_populates="user", cascade="all, delete")
     tasks = db.relationship("Task", back_populates="user", cascade="all, delete")
@@ -38,5 +39,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_pic': self.profile_pic,
             'about_me': self.about_me,
-            "created_at": self.created_at
+            "created_at": self.created_at,
+            "background_color": self.background_color,
         }

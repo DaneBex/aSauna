@@ -18,6 +18,12 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
 
     const [comment, setComment] = useState('')
 
+    // useEffect(() => {
+    //     dispatch(populateProjectsByUser(user.id))
+    //     dispatch(populateTasksByProject(project.id))
+    //     dispatch(populateCommentsByTask(task.id))
+    // }, [])
+
     const updateTaskNameHandler = (id, e) => {
         console.log(e.target.value)
         if (e.target.value === '') {
@@ -37,7 +43,7 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
     const updateTaskDetailsHandler = (id, e) => {
         dispatch(updateTask(id, { "new_details": e.target.value }))
         dispatch(populateTasksByProject(project.id))
-        dispatch(populateProjectsByUser(user.id))
+        // dispatch(populateProjectsByUser(user.id))
     }
 
     const submitDateHandler = (e, id) => {
@@ -49,16 +55,17 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
 
     const createCommentHandler = () => {
         if (comment) {
+            setComment('')
             let vals = {
                 "user_id": user.id,
                 "task_id": task.id,
                 "comment": comment
             }
             dispatch(createComment(vals))
-            dispatch(populateCommentsByTask(task.id))
+            // dispatch(populateCommentsByTask(task.id))
             dispatch(populateTasksByProject(project.id))
             dispatch(populateProjectsByUser(user.id))
-            setComment('')
+
         }
     }
 
@@ -80,7 +87,7 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
                         <p>Mark complete</p>
                     </div>
                 }
-                {task.status < 4 &&
+                {(task.status < 4 && task.status !== null) &&
                     <div onClick={() => {
                         thisStatus = 'complete'
                         updateTaskStatus()

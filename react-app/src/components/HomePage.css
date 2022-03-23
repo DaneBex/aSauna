@@ -23,8 +23,14 @@
     cursor: pointer;
 }
 
-.home-h1 {
+.home-h1-dark {
     font-size: 20px;
+    color: black
+}
+
+.home-h1-light {
+    font-size: 20px;
+    color: white;
 }
 
 .homepage-content {
@@ -41,20 +47,59 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+    height: 100%;
 }
 
-.homepage-date {
+.main-homepage-maroon {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(91, 7, 58);
+}
+
+.main-homepage-mustard {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(226, 160, 57);
+}
+
+.homepage-date-dark {
     height: 20px;
     font-size: 16px;
     font-weight: bold;
     display: flex;
     justify-content: center;
+    color: black
 }
 
-.homepage-goodmorning {
+.homepage-date-light {
+    height: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.homepage-goodmorning-dark {
     font-size: 32px;
     display: flex;
     justify-content: center;
+    color: black
+}
+
+.homepage-goodmorning-light {
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    color: white;
 }
 
 .profile-options {
@@ -62,7 +107,8 @@
     position: absolute;
     top: 30px;
     right: 0px;
-    border: 1px solid #cfcbcb
+    border: 1px solid #cfcbcb;
+    z-index: 6;
 }
 
 .profile-option {
@@ -89,6 +135,8 @@
     border: 1px solid #e6e3e3;
     margin-top: 20px;
     border-radius: 8px;
+    background-color: white;
+    box-shadow: 3px 3px 5px #cfcbcb;
 }
 
 .homepage-project-box-top {
@@ -198,3 +246,410 @@
     cursor: pointer;
 }
 
+.homepage-box-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.priority-box-headers {
+    display: flex;
+    flex-direction: column;
+}
+
+.priority-box-prof-pic {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+}
+
+.top-of-priority-box {
+    display: flex;
+    padding: 0 24px;
+    border-bottom: 1px solid #cfcbcb;
+    height: 20%;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.priority-box-options {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    bottom: 0px;
+    padding-bottom: 2px;
+}
+
+.priority-box-option {
+    cursor: pointer;
+}
+
+.priority-box-option-active {
+    border-bottom: 2px solid black;
+}
+
+.linkedin-img {
+    width: 20%;
+}
+
+.linkedin-plug {
+    cursor: pointer;
+}
+
+.homepage-greeting {
+    position: relative;
+    width: 100%;
+}
+
+.customize-button {
+    position: absolute;
+    right: 20px;
+    bottom: 0px;
+    border: 1px solid white;
+    width: 115px;
+    height: 36px;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+
+/* .customize-button:hover {
+    color: rgba(255, 255, 255, 0.0)
+} */
+
+.customize-button-white {
+    position: absolute;
+    right: 20px;
+    bottom: 0px;
+    border: 1px solid #cfcbcb;
+    width: 115px;
+    height: 36px;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.customize-text-dark {
+    color: black;
+}
+
+.customize-text-light {
+    color: white;
+}
+
+.close-customize-icon {
+    cursor: pointer;
+}
+
+.customize-page-div {
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    background-color: white;
+    right: 0px;
+    border: 1px solid #cfcbcb;
+    z-index: 5;
+}
+
+.customize-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 17%;
+    font-weight: 900;
+    border-bottom: 1px solid #cfcbcb;
+}
+
+.color-picker-div {
+    padding: 0 32px;
+}
+
+.background-maroon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(91, 7, 58);
+    cursor: pointer;
+}
+
+.background-mustard {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(226, 160, 57);
+    cursor: pointer;
+}
+
+.main-homepage-mustard {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(226, 160, 57);
+}
+
+.main-homepage-lime {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(174, 207, 85);
+}
+
+.background-lime {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(174, 207, 85);
+    cursor: pointer;
+}
+
+.main-homepage-pine {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(40, 91, 82);
+}
+
+.background-pine {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(40, 91, 82);
+    cursor: pointer;
+}
+
+.main-homepage-ocean {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(54, 184, 177);
+}
+
+.background-ocean {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(54, 184, 177);
+    cursor: pointer;
+}
+
+.main-homepage-lightblue {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(169, 220, 217);
+}
+
+.background-lightblue {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(169, 220, 217);
+    cursor: pointer;
+}
+
+.main-homepage-blue {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(69, 115, 210);
+}
+
+.background-blue {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(69, 115, 210);
+    cursor: pointer;
+}
+
+.main-homepage-lightpurple {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(147, 140, 225);
+}
+
+.background-lightpurple {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(147, 140, 225);
+    cursor: pointer;
+}
+
+.main-homepage-purple {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(173, 124, 196);
+}
+
+.background-purple {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(173, 124, 196);
+    cursor: pointer;
+}
+
+.main-homepage-pink {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(246, 160, 163);
+}
+
+.background-pink {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(246, 160, 163);
+    cursor: pointer;
+}
+
+.main-homepage-grey {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: rgb(224, 222, 220);
+}
+
+.background-grey {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgb(224, 222, 220);
+    cursor: pointer;
+}
+
+.main-homepage-white {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    background-color: white
+}
+
+.background-white {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #cfcbcb;
+    cursor: pointer;
+}
+
+.color-picker-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.color-picker-colors-top {
+    display: flex;
+    gap: 5px;
+}
+
+.color-picker-colors-bottom {
+    display: flex;
+    gap: 5px;
+}
+
+.homepage-circle-completions-dark {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 60px;
+    width: 30%;
+    height: 50px;
+    color: black;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+.homepage-circle-completions-light {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 60px;
+    width: 30%;
+    height: 50px;
+    color: white;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+.homepage-circle-completions-white {
+    display: flex;
+    align-items: center;
+    background-color: #f3f3f3;
+    border-radius: 60px;
+    width: 30%;
+    height: 50px;
+    color: black;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+.homepage-completed-div {
+    display: flex;
+    justify-content: center;
+}
+
+.homepage-tasks-completed-text {
+    text-align: center;
+}

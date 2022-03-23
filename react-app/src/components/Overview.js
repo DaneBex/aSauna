@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "./NavBar";
 import ProjectTop from "./ProjectTop";
 import { useParams } from "react-router-dom";
-import { updateProject } from "../store/project";
+import { populateProjectsByUser, updateProject } from "../store/project";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -18,10 +18,15 @@ const Overview = () => {
 
     const { projectId } = useParams()
 
+    useEffect(() => {
+        dispatch(populateProjectsByUser(user.id))
+    }, [])
+
     const [statusDrop, setStatusDrop] = useState(false)
 
     const projects = useSelector(state => Object.values(state.project))
     const thisPJ = projects.find(project => project.id === parseInt(projectId))
+    console.log(thisPJ)
     console.log(projects, projectId)
 
     const closeStatus = () => {
@@ -51,7 +56,7 @@ const Overview = () => {
                     <div className="project-overview-left">
                         <div className="project-overview-details">
                             <h4 className="project-overview-details-header">Project details</h4>
-                            <textarea placeholder="Set the tone for how you plan to accomplish this project. Add details, reminders, and other important information." defaultValue={thisPJ.details} onBlur={(e) => updatePjDetails(e.target.value)} className="project-overview-details-textarea" />
+                            <textarea placeholder="Set the tone for how you plan to accomplish this project. Add details, reminders, and other important information." defaultValue={thisPJ?.details} onBlur={(e) => updatePjDetails(e.target.value)} className="project-overview-details-textarea" />
                         </div>
                     </div>
                     <div className="project-overview-right">
@@ -86,7 +91,7 @@ const Overview = () => {
                             <p>Due Date</p>
                             <FontAwesomeIcon className="overview-duedate-icon" icon={faCalendarDays} />
                             <div className="overview-duedate-data">
-                                {Date.parse(thisPJ.due_date) > Date.parse(Date()) &&
+                                {Date.parse(thisPJ?.due_date) > Date.parse(Date()) &&
                                     <>
                                         <p className="overview-duedate-data-date-future">{thisPJ?.due_date.slice(0, 16)}</p>
                                         <input onChange={(e) => updatePjDate(e.target.value)} type="date" className="overview-duedate-data-input"></input>

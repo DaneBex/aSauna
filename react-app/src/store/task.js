@@ -89,26 +89,26 @@ const taskReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_TASK_BY_PROJECT: {
 
-            newState = {};
+            newState = JSON.parse(JSON.stringify(state));
             action.tasks.tasks.forEach(task => {
                 newState[task.id] = task
             })
             return newState;
         }
         case ADD_TASK: {
-            console.log(action.task)
-            newState = { ...state }
-            newState = { ...state, [action.task.id]: action.task}
-            // newState[action.task.id] = action.task
+
+            newState = JSON.parse(JSON.stringify(state));
+            // newState = { ...state, [action.task.id]: action.task}
+            newState[action.task.id] = action.task
             return newState
         }
         case DELETE_TASK: {
-            newState = { ...state };
+            newState = JSON.parse(JSON.stringify(state));
             delete newState[action.deletedTask.id];
             return newState
         }
         case UPDATE_TASK: {
-            newState = { ...state };
+            newState = JSON.parse(JSON.stringify(state));
             console.log(newState)
             newState[action.task.id] = action.task;
             console.log(newState)

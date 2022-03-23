@@ -1,11 +1,12 @@
 from crypt import methods
 from flask import Blueprint, request
 from ..models import db, Project
+from flask_login import current_user, login_required
 
 projects_routes = Blueprint('projects', __name__)
 
 
-@projects_routes.route('/', methods=['GET', 'POST'])
+@projects_routes.route('/', methods=['POST'])
 def create_project():
     if request.method == 'POST':
         data = request.get_json(force=True)
@@ -17,9 +18,10 @@ def create_project():
 
         return project.to_dict()
 
-@projects_routes.route('/<int:id>')
-def get_projects(id):
-    projects = Project.query.filter(Project.owner_id == id).all()
+@projects_routes.route('/')
+@login_required
+def get_projects():
+    projects = Project.query.filter(Project.owner_id == current_user.id).all()
 
     projectToDict = []
     for project in projects:

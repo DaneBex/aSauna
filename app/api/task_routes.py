@@ -32,7 +32,10 @@ def get_tasks(id):
 
 @tasks_routes.route('/<int:id>', methods=["DELETE"])
 def delete_task(id):
+
     task = Task.query.get(id)
+
+    print('\n\n\n\n\n\n\n\n', task.to_dict(), '\n\n\n\n\n\n\n\n\n\n')
     db.session.delete(task)
     db.session.commit()
     return {"id": id}
@@ -54,6 +57,8 @@ def update_task(id):
         task.priority = 2
     if request.json == 'high':
         task.priority = 3
+    if request.json == 'complete':
+        task.status = 4
     if request.json == 'status-none':
         task.status = 0
     if request.json == 'on-track':
@@ -72,6 +77,6 @@ def update_task(id):
 
 
 
-    db.session.add(task)
+    # db.session.add(task)
     db.session.commit()
     return task.to_dict()

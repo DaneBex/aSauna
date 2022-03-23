@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-    faSquarePlus, faCircleCheck as farCircleCheck, faCaretSquareDown, faComment, faRectangleList, faCircleDown, faPenToSquare, faCircleQuestion, faPlusSquare, faCircle as farCircle
+    faSquarePlus, faTrashCan, faCircleCheck as farCircleCheck, faCaretSquareDown, faComment, faRectangleList, faCircleDown, faPenToSquare, faCircleQuestion, faPlusSquare, faCircle as farCircle
 } from "@fortawesome/free-regular-svg-icons";
 import { faCircle as fasCircle, faCheck, faCircleCheck as fasCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import { useDispatch, useSelector } from "react-redux";
 import { updateTask, deleteTask, populateTasksByProject } from "../store/task";
 import { populateProjectsByUser } from "../store/project";
+import { useSpring, animated } from 'react-spring'
 import TaskDetails from "./TaskDetails";
 
 
@@ -22,22 +23,21 @@ const Task = ({ task, thisPJ }) => {
     const [taskPriority, setTaskPriority] = useState(0)
     const [desiredPriority, setDesiredPriority] = useState('')
     const [taskStatus, setTaskStatus] = useState(false)
+    const [createTask, setCreateTask] = useState(false)
 
     const [showTaskDetails, setShowTaskDetails] = useState(false)
 
-    // useEffect(() => {
-    //     dispatch(populateProjectsByUser(user.id))
-    //     dispatch(populateTasksByProject(thisPJ.id))
-    // }, [dispatch])
+    const props = useSpring({ to: { opacity: 1, marginTop: 0 }, delay: 200, from: { opacity: 0, marginTop: -500 } })
+    const props2 = useSpring({ to: { opacity: 1, marginBottom: 0 }, delay: 200, from: { opacity: 0, marginBottom: -500 } })
 
-    const thisTask = thisPJ.tasks.find(task => task.id === task.id)
+    useEffect(() => {
+        // dispatch(populateProjectsByUser(user.id))
+        dispatch(populateTasksByProject(thisPJ.id))
+    }, [dispatch])
+
 
     console.log(tasks)
 
-    const closeTaskDetails = (id) => {
-        if (showTaskDetails) setShowTaskDetails(false)
-        else setShowTaskDetails(id)
-    }
 
     const closePriority = (id) => {
         if (taskPriority) setTaskPriority(0)
@@ -49,11 +49,23 @@ const Task = ({ task, thisPJ }) => {
         else setTaskStatus(id)
     }
 
+    const closeTaskDetails = (id) => {
+        if (showTaskDetails) setShowTaskDetails(false)
+        else setShowTaskDetails(id)
+    }
+
     const updateTaskPriority = () => {
         console.log('TaskPriority:', taskPriority, 'DesiredPriority:', desiredPriority)
         dispatch(updateTask(task.id, thisPriority))
         setTaskPriority(0)
         dispatch(populateProjectsByUser(user.id))
+        // window.location.reload(false)
+    }
+
+    const deleteTaskHandler = () => {
+        dispatch(deleteTask(task.id))
+        // dispatch(populateProjectsByUser())
+        // dispatch(populateTasksByProject(thisPJ.id))
         // window.location.reload(false)
     }
 
@@ -85,18 +97,52 @@ const Task = ({ task, thisPJ }) => {
 
     return (
         <div className="project-task-active">
-            <div onClick={() => closeTaskDetails(task.id)} className="task-name">
-                <FontAwesomeIcon className="task-check-icon" icon={farCircleCheck} />
-                <input onBlur={(e) => updateTaskNameHandler(task.id, e)} defaultValue={task.name} className="task-name-input" />
-                {task.comments.length > 0 &&
-                    <div className="task-comments-num">
-                        <p className="task-comments-length">{task.comments.length}</p>
-                        <FontAwesomeIcon icon={faComment} className="task-comment-icon" />
-                    </div>
+            <div onClick={() => closeTaskDetails(task.id)} className={`task-name${task.status === 4 ? '-complete' : ''}`}>
+                {task.status === null &&
+                    <FontAwesomeIcon onClick={() => {
+                        thisStatus = 'complete'
+                        updateTaskStatus()
+                    }} className="task-check-icon" icon={farCircleCheck} />
                 }
+                {task.status < 4 && task.status !== null &&
+                    <>
+                        <FontAwesomeIcon onClick={() => {
+                            thisStatus = 'complete'
+                            updateTaskStatus()
+                        }} className="task-check-icon" icon={farCircleCheck} />
+                    </>
+                }
+                {task.status === 4 &&
+                    <>
+                        <FontAwesomeIcon onClick={() => {
+                            thisStatus = 'status-none'
+                            updateTaskStatus()
+                        }} className="task-check-icon-complete" icon={fasCircleCheck} />
+                        <p className="task-name-input">{task.name}</p>
+                        {task.comments.length > 0 &&
+                            <div className="task-comments-num">
+                                <p className="task-comments-length">{task.comments.length}</p>
+                                <FontAwesomeIcon icon={faComment} className="task-comment-icon" />
+                            </div>
+                        }
+                    </>
+                }
+                {task.status !== 4 &&
+                    <>
+                        <p className="task-name-input">{task.name}</p>
+                        {task.comments.length > 0 &&
+                            <div className="task-comments-num">
+                                <p className="task-comments-length">{task.comments.length}</p>
+                                <FontAwesomeIcon icon={faComment} className="task-comment-icon" />
+                            </div>
+                        }
+                    </>
+                }
+
+                <FontAwesomeIcon onClick={() => deleteTaskHandler()} className="delete-task-icon" icon={faTrashCan} />
             </div>
             {showTaskDetails === task.id &&
-                <TaskDetails task={task} project={thisPJ} />
+                <TaskDetails task={task} project={thisPJ} closeTaskDetails={closeTaskDetails} updateTaskStatus={updateTaskStatus} />
             }
             <div className="task-duedate">
                 {task.due_date &&
@@ -117,13 +163,19 @@ const Task = ({ task, thisPJ }) => {
                     <p>-</p>
                 }
                 {task.priority === 1 &&
-                    <p className="priority-option-low">Low</p>
+                    <animated.div style={props}>
+                        <p className="priority-option-low">Low</p>
+                    </animated.div>
                 }
                 {task.priority === 2 &&
-                    <p className="priority-option-medium">Medium</p>
+                    <animated.div style={props}>
+                        <p className="priority-option-medium">Medium</p>
+                    </animated.div>
                 }
                 {task.priority === 3 &&
-                    <p className="priority-option-high">High</p>
+                    <animated.div style={props}>
+                        <p className="priority-option-high">High</p>
+                    </animated.div>
                 }
                 {taskPriority === task.id &&
                     <div className="priority-option-box">
@@ -164,13 +216,19 @@ const Task = ({ task, thisPJ }) => {
                     <p>-</p>
                 }
                 {task.status === 1 &&
-                    <p className="status-option-ontrack">On track</p>
+                    <animated.div style={props2}>
+                        <p className="status-option-ontrack">On track</p>
+                    </animated.div>
                 }
                 {task.status === 2 &&
-                    <p className="status-option-atrisk">At risk</p>
+                    <animated.div style={props2}>
+                        <p className="status-option-atrisk">At risk</p>
+                    </animated.div>
                 }
                 {task.status === 3 &&
-                    <p className="status-option-offtrack">Off track</p>
+                    <animated.div style={props2}>
+                        <p className="status-option-offtrack">Off track</p>
+                    </animated.div>
                 }
                 {taskStatus === task.id &&
                     <div className="priority-option-box">

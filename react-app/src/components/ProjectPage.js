@@ -32,13 +32,16 @@ const ProjectPage = () => {
 
 
     const projects = useSelector(state => Object.values(state.project))
-    const tasks = useSelector(state => Object.values(state.task))
+
     const thisPJ = projects.find(project => project.id === parseInt(projectId))
 
 
     const [task, setTask] = useState('')
+    const [taskHighlight, setTaskHighlight] = useState(false)
 
-
+ const tasks = useSelector(state => Object.values(state.task).filter(task => {
+        return task.project_id === parseInt(projectId)
+    }))
 
     const createTaskHandler = () => {
         if (task) {
@@ -49,10 +52,17 @@ const ProjectPage = () => {
                 "task": task
             }
             dispatch(createTask(vals))
-            dispatch(populateTasksByProject(thisPJ.id))
-            dispatch(populateProjectsByUser(user.id))
+            // dispatch(populateTasksByProject(thisPJ.id))
+            // dispatch(populateProjectsByUser(user.id))
         }
     }
+
+    const closeTaskHighlight = () => {
+        if (taskHighlight) setTaskHighlight(false)
+        else setTaskHighlight(true)
+    }
+
+
 
     return (
         <div className="project-page-whole-page">
@@ -61,7 +71,7 @@ const ProjectPage = () => {
                 <ProjectTop thisPJ={thisPJ} />
                 <div className="lower-project-page">
                     <div className="add-task-button-div-projects">
-                        <div className="add-task-button">
+                        <div onClick={() => closeTaskHighlight()} className="add-task-button">
                             <FontAwesomeIcon className="add-task-icon" icon={faSquarePlus} />
                             <p>Add task</p>
                         </div>
@@ -84,15 +94,19 @@ const ProjectPage = () => {
 
                         </div>
                     </div>
-                    {thisPJ?.tasks.length > 0 && thisPJ.tasks.map(task => (
+                    {tasks && tasks.map(task => (
                         <Task task={task} thisPJ={thisPJ} />
                     ))
                     }
                     <div className="write-a-task">
                         <div className="enter-task-name">
                             <FontAwesomeIcon className="task-check-icon" icon={farCircleCheck} />
-                            <input value={task} onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task...">
-                            </input>
+                            {taskHighlight &&
+                            <input value={task} autoFocus onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task..." />
+                            }
+                            {taskHighlight === false &&
+                            <input value={task} onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task..." />
+                            }
                         </div>
                     </div>
                 </div>

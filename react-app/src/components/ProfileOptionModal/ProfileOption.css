@@ -20,6 +20,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 0 24px;
+    z-index: 6;
 }
 
 .prof-setting-input {

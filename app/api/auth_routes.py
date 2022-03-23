@@ -1,4 +1,5 @@
 from crypt import methods
+from wsgiref.util import request_uri
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
@@ -96,6 +97,31 @@ def update_user(id):
         user.username = request.json["username"]
     if 'about_me' in request.json:
         user.about_me = request.json["about_me"]
+    if request.json == 'maroon':
+        user.background_color = 'maroon'
+    if request.json == 'mustard':
+        user.background_color = 'mustard'
+    if request.json == 'lime':
+        user.background_color = 'lime'
+    if request.json == 'pine':
+        user.background_color = 'pine'
+    if request.json == 'ocean':
+        user.background_color = 'ocean'
+    if request.json == 'lightblue':
+        user.background_color = 'lightblue'
+    if request.json == 'blue':
+        user.background_color = 'blue'
+    if request.json == 'lightpurple':
+        user.background_color = 'lightpurple'
+    if request.json == 'purple':
+        user.background_color = 'purple'
+    if request.json == 'pink':
+        user.background_color = 'pink'
+    if request.json == 'grey':
+        user.background_color = 'grey'
+    if request.json == 'white':
+        user.background_color = 'white'
+
 
     db.session.add(user)
     db.session.commit()

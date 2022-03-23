@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-  faCheckCircle
+  faCheckCircle, faSquarePlus
 } from "@fortawesome/free-regular-svg-icons";
 import './NavBar.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +30,10 @@ const NavBar = ({ projects }) => {
         <FontAwesomeIcon className='house-icon' icon={faCheckCircle}></FontAwesomeIcon>
         <NavLink to={'/'} className='navbar-link-home'>Home</NavLink>
         </div>
+        <div className='navbar-link'>
+          <FontAwesomeIcon className='squareplus-icon' icon={faSquarePlus} />
+          <NavLink to={'/new/project'} className='navbar-link-home'>Create Project</NavLink>
+        </div>
       </div>
       <ul className='navbar-project-list'>
         <p className='navbar-project-header'>Projects</p>
@@ -44,6 +48,11 @@ const NavBar = ({ projects }) => {
           </NavLink>
         ))}
       </ul>
+      <div className='plug-myself'>
+        <a href='https://www.linkedin.com/in/dane-becker-780571230/' className='linkedin-plug'>
+          <img src='https://www.kinesisinc.com/wp-content/uploads/2020/04/linkedin-101-hero@2x.png' className='linkedin-img' />
+        </a>
+      </div>
     </nav>
   );
 }

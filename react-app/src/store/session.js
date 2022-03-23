@@ -76,7 +76,6 @@ export const logout = () => async (dispatch) => {
 };
 
 export const updateUser = (id, formInfo) => async (dispatch) => {
-  console.log('yes')
   const response = await fetch(`/api/auth/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },

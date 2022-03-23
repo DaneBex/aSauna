@@ -76,15 +76,17 @@ const commentReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_COMMENT_BY_TASK: {
 
-            newState = {};
+            newState = JSON.parse(JSON.stringify(state));
             action.comments.comments.forEach(comment => {
                 newState[comment.id] = comment
             })
             return newState
         }
         case ADD_COMMENT: {
-            newState = { ...state }
+            newState = JSON.parse(JSON.stringify(state));
+            console.log(newState)
             newState[action.comment.id] = action.comment
+            console.log(newState)
             return newState
         }
         case DELETE_COMMENT: {

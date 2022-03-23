@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
+import { useSelector } from 'react-redux';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -13,6 +14,7 @@ import NewProject from './components/NewProject';
 import ProjectPage from './components/ProjectPage';
 import ProfileOptionModal from './components/ProfileOptionModal';
 import Overview from './components/Overview';
+import { populateProjectsByUser } from './store/project';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -21,6 +23,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(populateProjectsByUser())
       setLoaded(true);
     })();
   }, [dispatch]);

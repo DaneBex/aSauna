@@ -596,8 +596,14 @@
     background-color: rgb(218, 53, 53);
 }
 
-.task-duedate-data {
+.task-duedate-data-late {
     font-size: 12px;
+    color: red;
+}
+
+.task-duedate-data-future {
+    font-size: 12px;
+    color: black
 }
 
 .task-details-sidebar {
@@ -916,7 +922,7 @@
 .delete-task-icon {
     position: absolute;
     right: 20px;
-    z-index: 5;
+    /* z-index: 5; */
 }
 
 .priority-box-duedate-text {

@@ -1,6 +1,6 @@
 from crypt import methods
 from wsgiref.util import request_uri
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, Response
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -61,8 +61,14 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    taken_user = User.query.filter_by(email=form.data["email"]).first()
+    print('\n\n\n\n\n\n\n\n', taken_user, '\n\n\n\n\n\n\n\n\n\n')
+    if taken_user is not None:
+        return Response("Email already taken", status=501)
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],

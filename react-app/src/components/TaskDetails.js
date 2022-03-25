@@ -17,6 +17,7 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
     let thisStatus;
 
     const [comment, setComment] = useState('')
+    const [error, setError] = useState('')
 
     // useEffect(() => {
     //     dispatch(populateProjectsByUser(user.id))
@@ -54,7 +55,14 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
     }
 
     const createCommentHandler = () => {
-        if (comment) {
+        let newError = ''
+
+        if (comment.length > 30) newError = 'Comment too long'
+        setError(newError)
+
+        if (newError) return
+
+        if (comment && !newError) {
             setComment('')
             let vals = {
                 "user_id": user.id,
@@ -145,6 +153,7 @@ const TaskDetails = ({ task, project, closeTaskDetails }) => {
                             }
                         </div>
                     </div>
+                    <p className="signup-error">{error}</p>
                 </div>
                 <div className="comments-show-div">
                     {task.comments && task.comments.map(comment => (

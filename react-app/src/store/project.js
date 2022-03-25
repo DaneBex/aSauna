@@ -4,6 +4,7 @@ const ADD_PROJECT = "project/ADD_PROJECT"
 const LOAD_PROJECT_BY_USER = "project/LOAD_PROJECT"
 const DELETE_PROJECT = "project/DELETE_PROJECT"
 const UPDATE_PROJECT = "project/UPDATE_PROJECT"
+const NO_PROJECT = "project/NO_PROJECT"
 
 
 
@@ -30,6 +31,12 @@ const changeProject = (project) => {
     }
 }
 
+const noProjects = () => {
+    return {
+        type: NO_PROJECT
+    }
+}
+
 export const createProject = (project) => async (dispatch) => {
 
     const response = await fetch('/api/projects/', {
@@ -47,13 +54,16 @@ export const createProject = (project) => async (dispatch) => {
 }
 
 export const populateProjectsByUser = () => async (dispatch) => {
+    
+        const response = await fetch(`/api/projects/`)
+        if (response.ok) {
+            const projects = await response.json()
+            dispatch(load_project(projects))
+        }
+}
 
-    const response = await fetch(`/api/projects/`)
-
-    if (response.ok) {
-        const projects = await response.json()
-        dispatch(load_project(projects))
-    }
+export const unPopulateProjects = () => async (dispatch) => {
+    dispatch(noProjects())
 }
 
 export const deleteProject = (id) => async (dispatch) => {
@@ -108,6 +118,9 @@ const projectReducer = (state = {}, action) => {
         }
         case UPDATE_PROJECT: {
             return { [action.project.id]: action.project, ...state }
+        }
+        case NO_PROJECT: {
+            return {}
         }
         default:
         return state;

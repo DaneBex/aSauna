@@ -26,7 +26,7 @@ const ProjectPage = () => {
     const { projectId } = useParams()
 
     useEffect(() => {
-        dispatch(populateProjectsByUser(user.id))
+        dispatch(populateProjectsByUser())
         dispatch(populateTasksByProject(parseInt(projectId)))
     }, [])
 
@@ -38,13 +38,21 @@ const ProjectPage = () => {
 
     const [task, setTask] = useState('')
     const [taskHighlight, setTaskHighlight] = useState(false)
+    const [error, setError] = useState('')
 
- const tasks = useSelector(state => Object.values(state.task).filter(task => {
+    const tasks = useSelector(state => Object.values(state.task).filter(task => {
         return task.project_id === parseInt(projectId)
     }))
 
     const createTaskHandler = () => {
-        if (task) {
+        let newError = ''
+
+        if (task.length > 20) newError = 'Task name too long'
+        setError(newError)
+
+        if (newError) return
+
+        if (task && !newError) {
             setTask('')
             let vals = {
                 "owner_id": user.id,
@@ -79,6 +87,9 @@ const ProjectPage = () => {
                             <FontAwesomeIcon className="add-section-icon" icon={faCaretSquareDown} />
                         </div>
                     </div>
+                    {error &&
+                    <p className="signup-error">Task name too long</p>
+                    }
                     <div className="project-task-table-heads">
                         <div className="task-name-header">
                             <p className="task-header-text">Task name</p>
@@ -102,10 +113,10 @@ const ProjectPage = () => {
                         <div className="enter-task-name">
                             <FontAwesomeIcon className="task-check-icon" icon={farCircleCheck} />
                             {taskHighlight &&
-                            <input value={task} autoFocus onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task..." />
+                                <input value={task} autoFocus onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task..." />
                             }
                             {taskHighlight === false &&
-                            <input value={task} onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task..." />
+                                <input value={task} onChange={(e) => setTask(e.target.value)} onBlur={() => createTaskHandler()} className='enter-task-input' placeholder="Click here to add a task..." />
                             }
                         </div>
                     </div>

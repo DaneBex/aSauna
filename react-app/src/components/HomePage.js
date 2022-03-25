@@ -24,7 +24,8 @@ const HomePage = () => {
 
 
     useEffect(() => {
-        dispatch(populateProjectsByUser(user.id))
+
+        dispatch(populateProjectsByUser())
     }, [])
 
     const projectsObj = useSelector(state => state.project)

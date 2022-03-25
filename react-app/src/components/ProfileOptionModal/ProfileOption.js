@@ -12,6 +12,7 @@ const ProfileOption = ({ user, setShowModal }) => {
     const [profPic, setProfPic] = useState('')
     const [username, setUsername] = useState('')
     const [aboutme, setAboutme] = useState('')
+    const [error, setError] = useState('')
 
     if (!profPic && !username && !aboutme) {
         submitButton = <p className="prof-setting-submit-nothing">Save Changes</p>
@@ -21,13 +22,24 @@ const ProfileOption = ({ user, setShowModal }) => {
 
     const updateProfHandler = (e) => {
         e.preventDefault()
+        let newError = ''
+        console.log(newError)
         let vals = {}
-        if (profPic) vals["profile_pic"] = profPic
+        if (profPic) {
+            if (!profPic.includes('.png') && !profPic.includes('.jpg') && !profPic.includes('.gif')) {
+                newError = 'Wrong image format'
+                setError(newError)
+            }
+            if (!newError) vals["profile_pic"] = profPic
+        }
         if (username) vals["username"] = username
         if (aboutme) vals["about_me"] = aboutme
 
+        console.log(newError)
+        if (!newError) {
         dispatch(updateUser(user.id, vals))
         setShowModal(false)
+        }
     }
 
     return (
@@ -36,6 +48,9 @@ const ProfileOption = ({ user, setShowModal }) => {
                 <h1>My Settings</h1>
             </div>
             <form onSubmit={updateProfHandler} className="prof-setting-form">
+                {error &&
+                <p className="signup-error">{error}</p>
+                }
                 <div className="prof-setting-input">
                     <label className="your-photo-edit">
                         Your photo link

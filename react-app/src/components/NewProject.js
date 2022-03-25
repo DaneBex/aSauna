@@ -28,6 +28,7 @@ const NewProject = () => {
 
     const [projectName, setProjectName] = useState('')
     const [projectDetails, setProjectDetails] = useState('')
+    const [error, setError] = useState('')
 
     const updatePname = (e) => {
         setProjectName(e.target.value)
@@ -39,7 +40,14 @@ const NewProject = () => {
 
     const createProjectHandler = async (e) => {
          e.preventDefault()
+         let newError = ''
 
+         if (projectName.length > 16) newError = 'Project name is too long'
+         setError(newError)
+
+         if (newError) return
+
+        if (!newError) {
         let newPJ = await dispatch(createProject({
             owner_id: user.id,
             name: projectName,
@@ -52,6 +60,7 @@ const NewProject = () => {
         } else console.log('not working')
 
     }
+}
 
     if (projectName && projectDetails) {
         submitButton = <button type="submit" className="new-project-submit">Continue</button>
@@ -70,6 +79,9 @@ const NewProject = () => {
                 <div className="project-details-header">
                     <h2 className="project-details-h2">New Project</h2>
                 </div>
+                {error &&
+                <p className="signup-error">{error}</p>
+                }
                 <form onSubmit={createProjectHandler} id="new-project-form">
                     <div className="new-project-input-label">
                         <label className="new-project-label">Project name</label>

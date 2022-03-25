@@ -317,13 +317,16 @@
     border-radius: 8px;
     font-weight: 900;
     cursor: pointer;
+    transition-duration: .5s;
 }
 
+.customize-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
 
-
-/* .customize-button:hover {
-    color: rgba(255, 255, 255, 0.0)
-} */
+.customize-button-white:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
 
 .customize-button-white {
     position: absolute;
@@ -339,6 +342,7 @@
     border-radius: 8px;
     font-weight: 900;
     cursor: pointer;
+    transition-duration: .5s;
 }
 
 .customize-text-dark {

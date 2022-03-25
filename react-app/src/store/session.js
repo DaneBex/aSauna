@@ -112,7 +112,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       return data.errors;
     }
   } else {
-    return ['An error occurred. Please try again.']
+    return ['Email already taken']
   }
 }
 

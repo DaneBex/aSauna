@@ -135,3 +135,12 @@ html {
 .login-login-button:hover {
     background-color: #575089;
 }
+
+.git-linkedin-links {
+    position: absolute;
+    bottom: 0;
+    width: 10%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}

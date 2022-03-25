@@ -147,7 +147,7 @@ const Task = ({ task, thisPJ }) => {
             <div className="task-duedate">
                 {task.due_date &&
                     <div className="duedate-data-in">
-                        <p className="task-duedate-data">{task?.due_date.slice(0, 16)}</p>
+                        <p className={`task-duedate-data-${(Date.parse(Date()) > Date.parse(task.due_date) && task.status !== 4) ? 'late' : 'future'}`}>{task?.due_date.slice(0, 16)}</p>
                         <input onChange={(e) => submitDateHandler(e, task.id)} className="task-duedate-input" type="date" />
                     </div>
                 }

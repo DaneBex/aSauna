@@ -39,7 +39,7 @@ const EditProject = ({ project, setShowModal }) => {
                     <label className="your-photo-edit">
                         Name
                     </label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="prof-setting-username-edit" />
+                    <input value={name} onChange={(e) => setName(e.target.value)} placeholder={project.name} type="text" className="prof-setting-username-edit" />
                 </div>
                 <div className="prof-setting-input">
                     <label className="your-photo-edit">

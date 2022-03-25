@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faCheckCircle
 } from "@fortawesome/free-regular-svg-icons";
+import { faGit, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import './SignUpForm.css'
+import { unPopulateProjects } from '../../store/project';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,14 +21,27 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(unPopulateProjects())
+  }, [])
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    let newErrors = []
+
+    if (password !== repeatPassword) {
+      newErrors.push('Passswords do not match')
     }
+
+    if (!email.includes('@') || !email.includes('.com')) {
+      newErrors.push('Email must be valid')
+    }
+
+    if (newErrors.length === 0) {
+      const data = await dispatch(signUp(username, email, password));
+      if (data) newErrors.push(data)
+    }
+    setErrors(newErrors)
   };
 
   const updateUsername = (e) => {
@@ -63,7 +79,7 @@ const SignUpForm = () => {
       <p id='signup-terms'>By signing up, I agree to the aSauna Privacy Policy and Terms of Service.</p>
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='signup-error' key={ind}>{error}</div>
         ))}
       </div>
       <div className='signup-input'>
@@ -74,6 +90,7 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
+          required
         ></input>
       </div>
       <div className='signup-input'>
@@ -84,6 +101,7 @@ const SignUpForm = () => {
           name='email'
           onChange={updateEmail}
           value={email}
+          required
         ></input>
       </div>
       <div className='signup-input'>
@@ -94,6 +112,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
+          required
         ></input>
       </div>
       <div className='signup-input'>
@@ -104,11 +123,15 @@ const SignUpForm = () => {
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
-          required={true}
+          required
         ></input>
       </div>
       <button className='signup-submit-button' type='submit'>Sign Up</button>
       <button className='signup-submit-button' onClick={demoLogin}>Demo User</button>
+      <div id='signup-login-link'>
+          <p>Have an account?</p>
+          <NavLink id='navlink-signup' to={'/login'}>Login</NavLink>
+        </div>
     </form>
     <div id='signup-right-side'>
     <img id='signup-form-image' src="https://luna1.co/005100.png" />
@@ -122,6 +145,14 @@ const SignUpForm = () => {
     <p>Unlimited storage</p>
     </div>
     <p>Plus much more...</p>
+    <div className='git-linkedin-links'>
+      <a target='_blank' href='https://github.com/DaneBex/aSauna'>
+       <FontAwesomeIcon className='github-icon' icon={faGithub} />
+      </a>
+      <a target='_blank' href='https://www.linkedin.com/in/dane-becker-780571230/'>
+        <FontAwesomeIcon className='linkedin-icon' icon={faLinkedin} />
+      </a>
+    </div>
     </div>
     </div>
   );

@@ -18,3 +18,11 @@ Upcoming features:
 * Python
 * PostgreSQL
 * Flask SQLAlchemy
+
+
+# Projects
+Users can organize their tasks into projects
+
+<img width="1137" alt="Screen Shot 2022-03-25 at 12 01 09 PM" src="https://user-images.githubusercontent.com/38844314/160167874-3ce11fd0-62c1-40b0-8fac-6cf6da68a11c.png">
+
+
